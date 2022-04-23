@@ -1,0 +1,20 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: brown;
+  padding: 1.5rem 10%;
+}
+
+nav .logo {
+  color: white;
+  font-family: cursive;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+nav .btn-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem
+}
