@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "react";
-import UserContext from "../context/UserContext";
+//import UserContext from "../context/AuthProvider";
 import api from "../services/api";
 
 export default function Profile() {
-  const { user, setUser } = useContext(UserContext);
+  //const { user, setUser } = useContext(UserContext);
   const [party, setParty] = useState("");
 
   async function getTeams() {
@@ -21,15 +21,13 @@ export default function Profile() {
   }, []);
 
   return (
-    user && (
+    <div>
       <div>
-        <div>
-          Seja Bem Vindo! @{user.name} seu id é {user.id}
-        </div>
-        <div>
-          <h2>Party</h2>
-        </div>
+        Seja Bem Vindo! @{user.name} seu id é {user.id}
       </div>
-    )
+      <div>
+        <h2>Party</h2>
+      </div>
+    </div>
   );
 }

@@ -1,16 +1,17 @@
-import { useContext, useState } from "react";
-import UserContext from "../context/UserContext";
+import { useContext, useEffect, useState } from "react";
+import useAuth from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
 
 export default function Register() {
   const [email, setEmail] = useState("");
-  const { user, setUser } = useContext(UserContext);
+  const { auth, setAuth } = useAuth();
 
   const navigate = useNavigate();
 
   async function handleLogin(e) {
     e.preventDefault();
+    let data = null;
 
     try {
       const response = await api.get("/login", {
@@ -18,20 +19,20 @@ export default function Register() {
           email: email,
         },
       });
-      const data = response.data;
-
-      if (response.status === 200) {
-        setUser(data);
-        localStorage.setItem("u", JSON.stringify(response.data));
-        console.log(localStorage.getItem("u"));
-
-        alert(`Login Realizado com Sucesso! seja bem vindo ${user.name}`);
-
-        navigate("/profile");
-      }
+      data = await response.data;
     } catch (err) {
       console.log(err);
       alert("Email Não Encontrado!");
+    }
+    if (data) {
+      setAuth(data);
+      localStorage.setItem("u", JSON.stringify(data));
+
+      const newUser = JSON.parse(localStorage.getItem("u"));
+
+      alert(`Login Realizado com Sucesso! Seja bem vindo ${newUser.name}`);
+      console.log(auth);
+      navigate("/profile");
     }
   }
 
