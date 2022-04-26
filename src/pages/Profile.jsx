@@ -1,33 +1,29 @@
 import { useContext, useEffect, useState } from "react";
-//import UserContext from "../context/AuthProvider";
+import useAuth from "../hooks/useAuth";
 import api from "../services/api";
 
 export default function Profile() {
-  //const { user, setUser } = useContext(UserContext);
+  const { auth, setAuth } = useAuth();
+  const [userData, setUserData] = useState(null);
   const [party, setParty] = useState("");
 
-  async function getTeams() {
+  async function getUserData() {
     const response = await api.get("/party", {
       params: {
-        userId: user.id,
+        userId: auth.id,
       },
     });
-    if (response) return response.data[0];
+    const data = await response?.data;
+    setUserData(data);
   }
 
   useEffect(() => {
-    const resp = getTeams();
-    setParty(resp);
+    getUserData().then((data) => console.log(data));
   }, []);
 
   return (
     <div>
-      <div>
-        Seja Bem Vindo! @{user.name} seu id é {user.id}
-      </div>
-      <div>
-        <h2>Party</h2>
-      </div>
+      <div>Seja Bem Vindo! @{auth.name}</div>
     </div>
   );
 }

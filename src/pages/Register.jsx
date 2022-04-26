@@ -1,8 +1,12 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import api from "../services/api";
 
+const REGISTER_URL = "/register";
+
 export default function Register() {
+  const errRef = useRef();
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
 
@@ -18,7 +22,7 @@ export default function Register() {
     };
 
     try {
-      const response = await api.post("/signup", newUser);
+      const response = await api.post(REGISTER_URL, newUser);
 
       console.log(JSON.stringify(response?.data));
 
@@ -29,7 +33,7 @@ export default function Register() {
       if (!err?.response) {
         setErrMsg("No Server Response");
       } else if (err.response?.status === 409) {
-        setErrMsg("Username Taken");
+        setErrMsg("Email Taken");
       } else {
         setErrMsg("Registration Failed");
       }
@@ -47,6 +51,13 @@ export default function Register() {
         </section>
       ) : (
         <main>
+          <p
+            ref={errRef}
+            className={errMsg ? "errmsg" : "offscreen"}
+            aria-live="assertive"
+          >
+            {errMsg}
+          </p>
           <form onSubmit={handleRegister}>
             <h2>Crie seu Usuário </h2>
             <input
