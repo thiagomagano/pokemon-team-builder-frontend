@@ -4,20 +4,108 @@
   padding: 0;
 }
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
 li {
-  list-style: none;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  margin: 5vh 10vw;
+}
+
+/* NAV COMPONENT */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 3rem;
+  background-color: hsl(51, 90%, 50%);
+  height: 8rem;
+}
+
+nav .logo {
+  width: 20rem;
+}
+
+nav img {
+  width: 100%;
+}
+
+nav span {
+  visibility: hidden;
+}
+
+nav .nav-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 13rem;
+}
+
+/* TEAM COMPONENT */
+
+.team {}
+
+.all-team {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.team-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 10rem 1fr;
+  padding: 1rem;
+  height: 10rem;
+  border-radius: 0.2rem;
+  border: 1px solid hsla(210, 6%, 14%, 0.15);
+
+}
+
+.pokemon-avatar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 8rem;
+}
+
+.pokemon-img {
+  width: 8rem;
+}
+
+.pokemon-info {
+  position: relative;
+}
+
+.pokemon-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 1rem;
+
+}
+
+.pokemon-name {
+  text-transform: capitalize;
+}
+
+.pokemon-types {
+  display: flex;
+  justify-content: flex-start;
+  gap: 0.5rem;
+}
+
+.pokemon-types-item {
+  text-transform: capitalize;
+  border: 1px solid gray;
+  padding: 0.2rem;
+}
+
+.close-icon {
+  position: absolute;
+  bottom: 2%;
+  right: 2%;
 }

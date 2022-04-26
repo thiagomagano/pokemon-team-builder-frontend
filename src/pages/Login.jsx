@@ -33,6 +33,7 @@ export default function Login() {
       const name = response?.data?.name;
 
       setAuth({ email, id, name });
+      localStorage.setItem("u", JSON.stringify({ email, id, name }));
 
       setEmail("");
 

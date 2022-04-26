@@ -1,10 +1,8 @@
-import Card from '../Card/Card'
-import './list.css'
+import Card from "./Card";
 
 function List({ pokemons }) {
   // const [pokemons, setPokemons] = useState([])
   // const [loading, setLoading] = useState(false)
-
 
   // useEffect(() => {
   //   async function getData() {
@@ -20,14 +18,14 @@ function List({ pokemons }) {
 
   // }, [])
 
-
   return (
-    <ul className='list'>
-      {pokemons && pokemons.map((p, index) => {
-        return <Card key={index} pokemon={p} />
-      })}
+    <ul className="list">
+      {pokemons &&
+        pokemons.map((p, index) => {
+          return <Card key={index} pokemon={p} />;
+        })}
     </ul>
-  )
+  );
 }
 
-export default List
+export default List;
