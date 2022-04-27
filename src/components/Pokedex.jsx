@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
+import useTeam from "../hooks/useTeam";
 import api from "../services/api";
 
 export default function Pokedex() {
   const [types, setTypes] = useState("");
   const [pokemons, setPokemons] = useState("");
+  const [checkbox, setCheckbox] = useState("");
+  const [searchName, setSearchName] = useState("");
 
   async function getAllTypes() {
     const response = await api.get("/types");
@@ -16,6 +19,12 @@ export default function Pokedex() {
     const data = await response?.data;
     setPokemons(data);
   }
+
+  // function handleFilters(pokemons) {
+  //   return pokemons.filter(
+  //     (pokemon) => pokemon.name.toLowerCase().indexOf(searchName) > -1
+  //   );
+  // }
 
   useEffect(() => {
     getAllTypes();
@@ -33,21 +42,26 @@ export default function Pokedex() {
           <h3>Types</h3>
           <div className="checkbox-group">
             {types &&
-              types.map((type) => {
-                return <TypeCheckBox type={type} />;
+              types.map((type, index) => {
+                return <TypeCheckBox type={type} key={index} />;
               })}
           </div>
         </div>
         <div className="filter name">
-          <input type="text" placeholder="Pesquise Por Nome" />
+          <input
+            type="text"
+            placeholder="Pesquise Por Nome"
+            value={searchName}
+            onChange={(e) => setSearchName(e.target.value)}
+          />
         </div>
-        <button>Filtrar</button>
+        <button onClick={() => handleFilters(pokemons)}>Filtrar</button>
       </div>
 
       <ul className="pokedex-list">
         {pokemons &&
-          pokemons.map((pokemon) => {
-            return <PokemonCard pokemon={pokemon} />;
+          pokemons.map((pokemon, index) => {
+            return <PokemonCard pokemon={pokemon} key={index} />;
           })}
       </ul>
     </div>
@@ -70,18 +84,24 @@ function TypeCheckBox({ type }) {
 }
 
 function PokemonCard({ pokemon }) {
+  const { team, setTeam } = useTeam();
+
+  function insertIntoParty(pokemon) {
+    team.length < 6 ? setTeam([...team, pokemon]) : console.log("team is full");
+  }
+
   return (
-    <li className="pokemon-card">
+    <li className="pokemon-card" onClick={() => insertIntoParty(pokemon)}>
       <ul>
-        <li>
+        <li className="card-image-container">
           <img
             className="card-image"
             src={pokemon.avatarUrl}
             alt={pokemon.name}
           />
         </li>
-        <li>#{pokemon.id}</li>
-        <li>{pokemon.name}</li>
+        <li className="description-id">#{pokemon.id}</li>
+        <li className="description-name">{pokemon.name}</li>
       </ul>
     </li>
   );

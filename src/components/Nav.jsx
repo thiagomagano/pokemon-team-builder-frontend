@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import useAuth from "../hooks/useAuth.js";
 
 function Nav() {
@@ -15,8 +16,14 @@ function Nav() {
       </div>
       <div className="nav-group">
         <p>Olá {auth.name}!</p>
-        <button className="btn logout" onClick={handleLogout}>
+        <button className="btn btn-logout" onClick={handleLogout}>
           Logout
+        </button>
+        <button className="btn btn-partys">
+          <Link to="/partys">Partys</Link>
+        </button>
+        <button className="btn btn-profile">
+          <Link to="/profile">Profile</Link>
         </button>
       </div>
     </nav>

@@ -9,6 +9,7 @@ import Home from './pages/Home.jsx'
 import Login from './pages/Login.jsx'
 import Register from './pages/Register.jsx'
 import Profile from './pages/Profile.jsx'
+import Partys from './pages/Partys.jsx'
 import Unauthorized from './pages/Unauthorized.jsx'
 import Missing from './pages/Missing.jsx'
 import RequireAuth from './pages/RequireAuth.jsx'
@@ -30,6 +31,7 @@ function App() {
 
           <Route element={<RequireAuth />}>
             <Route path="/profile" element={<Profile />} />
+            <Route path="/partys" element={<Partys />} />
           </Route>
 
           <Route path="/*" element={<Missing />} />

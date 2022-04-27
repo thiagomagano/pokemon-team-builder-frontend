@@ -45,8 +45,6 @@ nav .nav-group {
 
 /* TEAM COMPONENT */
 
-
-
 .all-team {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -115,7 +113,6 @@ nav .nav-group {
 .pokedex {
   margin-top: 1.5rem;
   display: flex;
-  background-color: aliceblue;
   justify-content: space-between;
   flex-direction: column;
 }
@@ -160,9 +157,38 @@ nav .nav-group {
 
 .pokedex-list {
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1rem;
+}
+
+.pokemon-card {
+  text-align: center;
+  border: .5px solid hsla(0, 0%, 76%, 0.918);
+  border-radius: 0.3rem;
+  transition: all 1000;
+}
+
+.pokemon-card:hover {
+  border: 2px solid hsl(0, 0%, 1%);
+  cursor: pointer;
+}
+
+.card-image-container {
+  height: 100%;
+  background: hsla(0, 0%, 0%, 0.05);
 }
 
 .card-image {
-  width: 8rem;
+  width: 100%;
+}
+
+.description-id {
+  border-top: 0.5px solid hsla(0, 0%, 76%, 0.918);
+  font-weight: 600;
+}
+
+.description-name {
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  line-height: 1.4;
 }

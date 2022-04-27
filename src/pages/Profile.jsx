@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import useAuth from "../hooks/useAuth";
 import api from "../services/api";
 
+import { TeamProvider } from "../context/TeamProvider";
+
 import Nav from "../components/Nav";
 import Team from "../components/Team";
 import Pokedex from "../components/Pokedex";
@@ -9,7 +11,6 @@ import Pokedex from "../components/Pokedex";
 export default function Profile() {
   const { auth, setAuth } = useAuth();
   const [userData, setUserData] = useState(null);
-  const [party, setParty] = useState("");
 
   useEffect(() => {
     setAuth(JSON.parse(localStorage.getItem("u")));
@@ -35,9 +36,11 @@ export default function Profile() {
   return (
     <>
       <Nav />
-      <main class="container">
-        <Team />
-        <Pokedex />
+      <main className="container">
+        <TeamProvider>
+          <Team />
+          <Pokedex />
+        </TeamProvider>
       </main>
     </>
   );

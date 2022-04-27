@@ -1,38 +1,58 @@
-const pokemon = {
-  id: 1,
-  name: "bulbasaur",
-  avatarUrl:
-    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
-  types: [
-    {
-      id: 11,
-      name: "grass",
-      url: "https://pokeapi.co/api/v2/type/12/",
-    },
-    {
-      id: 3,
-      name: "poison",
-      url: "https://pokeapi.co/api/v2/type/4/",
-    },
-  ],
-};
+import { useRef } from "react";
+import useAuth from "../hooks/useAuth";
+import useTeam from "../hooks/useTeam";
+import api from "../services/api";
 
 export default function Team() {
+  const { team, setTeam } = useTeam();
+  const { auth } = useAuth();
+
+  const teamTitleRef = useRef();
+
+  async function saveTeam(e) {
+    e.preventDefault();
+    const newParty = {
+      title: teamTitleRef.current.value || "Minha Party",
+      pokemonList: team.map((t) => t.id),
+      userId: auth.id,
+    };
+
+    console.log(newParty);
+
+    const response = await api.post("/party", newParty);
+    const data = console.log(response.data);
+
+    teamTitleRef.current.value = "";
+  }
+
   return (
     <section className="team">
       <ul className="all-team">
-        <TeamItem position={1} pokemon={pokemon} />
-        <TeamItem position={2} />
-        <TeamItem position={3} />
-        <TeamItem position={4} />
-        <TeamItem position={5} />
-        <TeamItem position={6} />
+        <TeamItem position={1} pokemon={team[0] || null} />
+        <TeamItem position={2} pokemon={team[1] || null} />
+        <TeamItem position={3} pokemon={team[2] || null} />
+        <TeamItem position={4} pokemon={team[3] || null} />
+        <TeamItem position={5} pokemon={team[4] || null} />
+        <TeamItem position={6} pokemon={team[5] || null} />
       </ul>
+      <form>
+        <input ref={teamTitleRef} type="text" placeholder="Nome do Time" />
+        <button onClick={(e) => saveTeam(e)}>Save Team</button>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            setTeam([]);
+          }}
+        >
+          Clean Team
+        </button>
+      </form>
     </section>
   );
 }
 
 function TeamItem({ pokemon, position }) {
+  const { team, setTeam } = useTeam();
   return pokemon ? (
     <li className="team-item">
       {/* <span>{position}</span> */}
@@ -47,13 +67,22 @@ function TeamItem({ pokemon, position }) {
         </li>
         <li>
           <ul className="pokemon-types">
-            {pokemon.types.map((t) => {
-              return <li className="pokemon-types-item">{t.name}</li>;
+            {pokemon.types.map((t, index) => {
+              return (
+                <li key={index} className="pokemon-types-item">
+                  {t.name}
+                </li>
+              );
             })}
           </ul>
         </li>
       </ul>
-      <i className="close-icon">x</i>
+      <i
+        className="close-icon"
+        onClick={() => setTeam(team.filter((p) => p.name !== pokemon.name))}
+      >
+        x
+      </i>
     </li>
   ) : (
     <li className="team-item">
@@ -65,12 +94,9 @@ function TeamItem({ pokemon, position }) {
           className="pokemon-img"
         />
       </div>
-      <ul className="pokemon-info">
-        <li className="pokemon-index">#0</li>
-        <li className="pokemon-name">Name</li>
-        <li className="pokemon-types">Types 1 | Type2</li>
-      </ul>
-      <i className="close-icon">x</i>
+      <div className="pokemon-info">
+        <p className="info-placeholder">[Escola um Pokemon Abaixo]</p>
+      </div>
     </li>
   );
 }
