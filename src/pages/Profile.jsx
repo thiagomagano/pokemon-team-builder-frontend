@@ -18,15 +18,15 @@ export default function Profile() {
 
   useEffect(() => {
     async function getUserData() {
+      const userLocal = JSON.parse(localStorage.getItem("u"));
       const response = await api.get("/party", {
         params: {
-          userId: auth.id || 1,
+          userId: auth.id || userLocal.id,
         },
       });
       const data = await response?.data;
 
       setUserData(data);
-      //console.log(userData);
       return response;
     }
 

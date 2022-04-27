@@ -27,18 +27,13 @@ export default function Team() {
 
   return (
     <section className="team">
-      <ul className="all-team">
-        <TeamItem position={1} pokemon={team[0] || null} />
-        <TeamItem position={2} pokemon={team[1] || null} />
-        <TeamItem position={3} pokemon={team[2] || null} />
-        <TeamItem position={4} pokemon={team[3] || null} />
-        <TeamItem position={5} pokemon={team[4] || null} />
-        <TeamItem position={6} pokemon={team[5] || null} />
-      </ul>
-      <form>
+      <form className="team-form">
         <input ref={teamTitleRef} type="text" placeholder="Nome do Time" />
-        <button onClick={(e) => saveTeam(e)}>Save Team</button>
+        <button className="btn-save" onClick={(e) => saveTeam(e)}>
+          Save Team
+        </button>
         <button
+          className="btn-clean"
           onClick={(e) => {
             e.preventDefault();
             setTeam([]);
@@ -47,6 +42,14 @@ export default function Team() {
           Clean Team
         </button>
       </form>
+      <ul className="all-team">
+        <TeamItem position={1} pokemon={team[0] || null} />
+        <TeamItem position={2} pokemon={team[1] || null} />
+        <TeamItem position={3} pokemon={team[2] || null} />
+        <TeamItem position={4} pokemon={team[3] || null} />
+        <TeamItem position={5} pokemon={team[4] || null} />
+        <TeamItem position={6} pokemon={team[5] || null} />
+      </ul>
     </section>
   );
 }

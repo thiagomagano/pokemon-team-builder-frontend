@@ -10,21 +10,25 @@ function Nav() {
 
   return (
     <nav>
+      <p>Welcome, {auth.name}!</p>
       <div className="logo">
-        <img src="../../public/navlogo.png" alt="Pokemon-TemBuilder" />
+        <img src="/logo.png" alt="Pokemon-TemBuilder" />
         <span>Pokemon-TemBuilder</span>
       </div>
-      <div className="nav-group">
-        <p>Olá {auth.name}!</p>
-        <button className="btn btn-logout" onClick={handleLogout}>
-          Logout
-        </button>
-        <button className="btn btn-partys">
-          <Link to="/partys">Partys</Link>
-        </button>
-        <button className="btn btn-profile">
-          <Link to="/profile">Profile</Link>
-        </button>
+      <div className="nav-links">
+        <ul>
+          <li>
+            <Link to="/profile">Builder</Link>
+          </li>
+          <li>
+            <Link to="/partys">Partys</Link>
+          </li>
+          <li>
+            <a className="btn-logout" onClick={handleLogout}>
+              Logout
+            </a>
+          </li>
+        </ul>
       </div>
     </nav>
   );

@@ -43,12 +43,14 @@ export default function Register() {
   return (
     <>
       {sucess ? (
-        <section>
-          <h1>Success!</h1>
-          <p>
-            <Link to="/login">Sign In</Link>
-          </p>
-        </section>
+        <main className="register-container">
+          <div className="content">
+            <h1>Sucess!</h1>
+            <Link class="back-link" to="/login">
+              Back to Login
+            </Link>
+          </div>
+        </main>
       ) : (
         <main className="register-container">
           {/* <p
