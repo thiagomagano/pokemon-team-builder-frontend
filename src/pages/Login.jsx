@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState, useRef } from "react";
 import useAuth from "../hooks/useAuth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+
 import api from "../services/api";
 
 const LOGIN_URL = "/login";
@@ -53,32 +54,33 @@ export default function Login() {
 
   return (
     <main>
-      <p
-        ref={errRef}
-        className={errMsg ? "errmsg" : "offscreen"}
-        aria-live="assertive"
-      >
-        {errMsg}
-      </p>
-      <form onSubmit={handleLogin}>
-        <h2>Faça Login</h2>
-        <input
-          ref={emailRef}
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <button type="submit">Login</button>
-      </form>
-      <p>
-        Need an Account?
-        <br />
-        <span className="line">
-          <Link to="/register">Sign Up</Link>
-        </span>
-      </p>
+      <div className="login-container">
+        <section className="form-container">
+          <img src="/logo.png" alt="Pokemon Team Builder" />
+          <form onSubmit={handleLogin}>
+            <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
+              {errMsg}
+            </p>
+            <h1>Faça seu Login</h1>
+            <input
+              ref={emailRef}
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            <button className="btn" type="submit">
+              Sign In
+            </button>
+
+            <Link className="back-link" to="/register">
+              Need an Account? Sign Up
+            </Link>
+          </form>
+        </section>
+        <img className="hero" src="/hero.png" alt="Os 3 Pokemons Iniciais" />
+      </div>
     </main>
   );
 }

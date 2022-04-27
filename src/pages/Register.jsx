@@ -50,32 +50,43 @@ export default function Register() {
           </p>
         </section>
       ) : (
-        <main>
-          <p
+        <main className="register-container">
+          {/* <p
             ref={errRef}
             className={errMsg ? "errmsg" : "offscreen"}
             aria-live="assertive"
           >
             {errMsg}
-          </p>
-          <form onSubmit={handleRegister}>
-            <h2>Crie seu Usuário </h2>
-            <input
-              type="text"
-              placeholder="Nome"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
-            <input
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-            <button type="submit">Realizar Login</button>
-          </form>
+          </p> */}
+          <div className="content">
+            <section>
+              <img src="/logo.png" alt="Pokemon Team Builder" />
+              <h1>Register</h1>
+              <p>Login and start building your pokemon teams!</p>
+            </section>
+            <form onSubmit={handleRegister}>
+              <input
+                type="text"
+                placeholder="Name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+              <input
+                type="email"
+                placeholder="E-mail @"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+              <button class="btn btn-register" type="submit">
+                Register
+              </button>
+              <Link class="back-link" to="/login">
+                Back to Login
+              </Link>
+            </form>
+          </div>
         </main>
       )}
     </>
