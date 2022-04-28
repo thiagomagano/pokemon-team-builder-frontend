@@ -8,7 +8,7 @@
   --color-red: hsl(11, 89%, 47%);
   --color-green: hsl(129 38% 49%);
   --color-white: hsl(0, 0%, 100%);
-  --color-black: hsl(0, %0, %0);
+  --color-black: hsl(221deg 50% 15%);
 }
 
 * {
@@ -369,6 +369,7 @@ nav .nav-links ul li a:hover {
   margin-top: 1.5rem;
   display: flex;
   justify-content: space-between;
+  gap: 5vh;
   flex-direction: column;
 }
 
@@ -382,28 +383,44 @@ nav .nav-links ul li a:hover {
 }
 
 .filter {
-  display: flex;
-  padding: 1rem;
-  align-items: center;
-}
-
-.filter-types {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.8rem;
-}
-
-.checkbox-group {
   display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  gap: 0.3rem;
+  grid-template-columns: max-content 1fr;
+  gap: 5vmin;
+  align-items: flex-start;
 }
 
-.checkbox-item {
+fieldset {
+  padding: 2ch;
+  border-radius: 10px;
+  background-color: var(--color-white);
+  border: 1px solid hsl(221deg 30% 90%);
+}
+
+fieldset>div {
   display: flex;
-  align-items: center;
-  gap: 0.3rem;
+  gap: 2ch;
+  align-items: baseline;
+  color: var(--color-black);
+}
+
+fieldset>div+div {
+  margin-block-start: 2ch;
+}
+
+input[type=checkbox] {
+  margin: 0;
+  outline-offset: 5px;
+  accent-color: var(--color-black);
+  transform-style: preserve-3d;
+  cursor: pointer;
+  width: auto;
+  height: auto;
+  border: none;
+  padding: 0;
+}
+
+fieldset>div>label {
+  line-height: 1.5;
 }
 
 .checkbox-item label {
@@ -446,4 +463,24 @@ nav .nav-links ul li a:hover {
   text-transform: uppercase;
   font-size: 0.8rem;
   line-height: 1.4;
+}
+
+/* PARTYS */
+.partys {
+  margin: 5vh 10vw;
+  display: flex;
+  flex-direction: column;
+  gap: 5vh;
+}
+
+.partys-item {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.pokemons-party {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2ch;
 }

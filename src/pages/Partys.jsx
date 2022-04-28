@@ -3,6 +3,7 @@ import useAuth from "../hooks/useAuth";
 import api from "../services/api";
 
 import Nav from "../components/Nav";
+import TeamItem from "../components/TeamItem";
 
 export default function Partys() {
   const { auth } = useAuth();
@@ -28,8 +29,25 @@ export default function Partys() {
   return (
     <div>
       <Nav />
-      hello
-      <ul>{partys && partys.map((p) => <li key={p.id}>{p.title}</li>)}</ul>
+      <ul class="partys">
+        {partys &&
+          partys.map((party, index) => {
+            return (
+              <li class="partys-item">
+                <li>
+                  <h2>
+                    #{index + 1} - {party.title}
+                  </h2>
+                </li>
+                <li class="pokemons-party">
+                  {party.pokemons.map((poke) => (
+                    <TeamItem pokemon={poke} />
+                  ))}
+                </li>
+              </li>
+            );
+          })}
+      </ul>
     </div>
   );
 }

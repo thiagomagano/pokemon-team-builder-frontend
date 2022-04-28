@@ -3,6 +3,7 @@ import useAuth from "../hooks/useAuth";
 import api from "../services/api";
 
 import { TeamProvider } from "../context/TeamProvider";
+import useTeam from "../hooks/useTeam";
 
 import Nav from "../components/Nav";
 import Team from "../components/Team";
@@ -10,6 +11,7 @@ import Pokedex from "../components/Pokedex";
 
 export default function Profile() {
   const { auth, setAuth } = useAuth();
+  const { team, setTeam } = useTeam();
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {

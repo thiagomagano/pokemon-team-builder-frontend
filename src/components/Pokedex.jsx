@@ -38,32 +38,25 @@ export default function Pokedex() {
       </div>
 
       <div className="filter">
-        <div className="filter-types">
-          <h3>Types</h3>
-          <div className="checkbox-group">
-            {types &&
-              types.map((type, index) => {
-                return <TypeCheckBox type={type} key={index} />;
-              })}
-          </div>
-        </div>
-        <div className="filter name">
-          <input
-            type="text"
-            placeholder="Pesquise Por Nome"
-            value={searchName}
-            onChange={(e) => setSearchName(e.target.value)}
-          />
-        </div>
-        <button onClick={() => handleFilters(pokemons)}>Filtrar</button>
-      </div>
+        <aside>
+          <form>
+            <fieldset>
+              <legend>Types</legend>
+              {types &&
+                types.map((type, index) => {
+                  return <TypeCheckBox type={type} key={index} />;
+                })}
+            </fieldset>
+          </form>
+        </aside>
 
-      <ul className="pokedex-list">
-        {pokemons &&
-          pokemons.map((pokemon, index) => {
-            return <PokemonCard pokemon={pokemon} key={index} />;
-          })}
-      </ul>
+        <ul className="pokedex-list">
+          {pokemons &&
+            pokemons.map((pokemon, index) => {
+              return <PokemonCard pokemon={pokemon} key={index} />;
+            })}
+        </ul>
+      </div>
     </div>
   );
 }
@@ -74,7 +67,7 @@ function TypeCheckBox({ type }) {
       <input
         className="filter-checkbox"
         type="checkbox"
-        name={type.name}
+        name="type"
         id={type.name}
         value={type.name}
       />
