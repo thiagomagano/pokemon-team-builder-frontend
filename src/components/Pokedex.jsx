@@ -5,8 +5,12 @@ import api from "../services/api";
 export default function Pokedex() {
   const [types, setTypes] = useState([]);
   const [pokemons, setPokemons] = useState([]);
-  const [checkbox, setCheckbox] = useState("");
-  const [searchName, setSearchName] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [filterTypes, setFilterTypes] = useState([]);
+  const [pokemonsFilter, setPokemonsFilter] = useState([]);
+
+  // let filterTypes = [];
+  // let pokemonsFilter = [];
 
   async function getAllTypes() {
     const response = await api.get("/types");
@@ -18,18 +22,49 @@ export default function Pokedex() {
     const response = await api.get("/pokemons");
     const data = await response?.data;
     setPokemons(data);
+    setPokemonsFilter(data);
+    setIsLoading(false);
   }
 
-  // function handleFilters(pokemons) {
-  //   return pokemons.filter(
-  //     (pokemon) => pokemon.name.toLowerCase().indexOf(searchName) > -1
-  //   );
-  // }
-
   useEffect(() => {
+    setIsLoading(true);
     getAllTypes();
     getAllPokemons();
   }, []);
+
+  useEffect(() => {
+    const newPokemons = setFilterPokemons(pokemons);
+    setPokemonsFilter(newPokemons);
+    if (filterTypes.length === 0) {
+      setPokemonsFilter(pokemons);
+    }
+  }, [filterTypes]);
+
+  function setFilterPokemons(pokemons) {
+    if (pokemons) {
+      const newPokemons = pokemons.filter((p) => {
+        if (p.types.length > 1)
+          return (
+            filterTypes.indexOf(p.types[0].name) > -1 ||
+            filterTypes.indexOf(p.types[1].name) > -1
+          );
+        return filterTypes.indexOf(p.types[0].name) > -1;
+      });
+
+      return newPokemons;
+    }
+  }
+
+  function handleFilters(e) {
+    const filter = e.target.value;
+
+    if (e.target.checked) {
+      setFilterTypes([...filterTypes, filter]);
+    } else {
+      setFilterTypes(filterTypes.filter((f) => f != filter));
+    }
+    console.log(filterTypes);
+  }
 
   return (
     <div className="pokedex">
@@ -44,24 +79,31 @@ export default function Pokedex() {
               <legend>Types</legend>
               {types &&
                 types.map((type, index) => {
-                  return <TypeCheckBox type={type} key={index} />;
+                  return (
+                    <TypeCheckBox
+                      type={type}
+                      key={index}
+                      handleFilters={handleFilters}
+                    />
+                  );
                 })}
             </fieldset>
           </form>
         </aside>
 
         <ul className="pokedex-list">
-          {pokemons &&
-            pokemons.map((pokemon, index) => {
+          {pokemonsFilter &&
+            pokemonsFilter.map((pokemon, index) => {
               return <PokemonCard pokemon={pokemon} key={index} />;
             })}
+          {isLoading && <li>Loading...</li>}
         </ul>
       </div>
     </div>
   );
 }
 
-function TypeCheckBox({ type }) {
+function TypeCheckBox({ type, handleFilters }) {
   return (
     <div className="checkbox-item">
       <input
@@ -70,6 +112,7 @@ function TypeCheckBox({ type }) {
         name="type"
         id={type.name}
         value={type.name}
+        onChange={(e) => handleFilters(e)}
       />
       <label htmlFor={type.name}> {type.name}</label>
     </div>
