@@ -1,6 +1,7 @@
 import useTeam from "../hooks/useTeam";
 import axios from "axios";
 import { useEffect } from "react";
+import typechart from "../utils/typechart";
 
 const pokeapi = axios.create({
   baseURL: "https://pokeapi.co/api/v2/type/",
@@ -11,54 +12,51 @@ const API_ENDPOINT = "https://pokeapi.co/api/v2/type";
 export default function TeamItem({ pokemon, position }) {
   const { team, setTeam } = useTeam();
 
-  async function getDamageRelation(type) {
-    const response = await pokeapi.get(type.name);
-    const data = response?.data;
+  function getDamageRelation(type, relation) {
+    const relations = typechart[type][relation];
 
-    const veryGoodAgaist = data.damage_relations.double_damage_to[0]?.name;
-    const veryBadAgaist = data.damage_relations.double_damage_from[0]?.name;
-
-    const goodAgaist = data.damage_relations.half_damage_to[0]?.name;
-    const badAgaist = data.damage_relations.half_damage_from[0]?.name;
-
-    const superBadAgaist = data.damage_relations.no_damage_to[0]?.name;
-    const superGoodAgaist = data.damage_relations.no_damage_from[0]?.name;
-
-    console.log(`Muito Bom Contra: ${veryGoodAgaist || "xxxxxxxx"}`);
-    console.log(`Muito Ruim Contra: ${veryBadAgaist || "xxxxxxxx"}`);
-    console.log(`Bom Contra: ${badAgaist || "xxxxxxxx"}`);
-    console.log(`Ruim Contra: ${goodAgaist || "xxxxxxxx"}`);
-    console.log(`Não sofre dano: ${superGoodAgaist || "xxxxxxxx"}`);
-    console.log(`Não dá dano: ${superBadAgaist || "xxxxxxxx"}`);
+    return `${relations.join(" | ")}`;
   }
 
-  useEffect(() => {
-    if (pokemon) getDamageRelation(pokemon.types[0]);
-  }, [pokemon]);
+  useEffect(() => {}, [pokemon]);
 
   return pokemon ? (
-    <li className="team-item">
+    <li className={`team-item ${pokemon.types[0].name}`}>
       <div className="pokemon-avatar">
-        <img src={pokemon.avatarUrl} alt="" className="pokemon-img" />
+        <img
+          className="pokemon-img"
+          src={pokemon.avatarUrl}
+          alt={`Sprite for pokemon: ${pokemon.name}`}
+        />
+        <p className="pokemon-name">#{`${pokemon.id} ${pokemon.name}`}</p>
       </div>
 
-      <ul className="pokemon-info">
-        <li className="pokemon-index">#{pokemon.id}</li>
-        <li className="pokemon-name">
-          <h2>{pokemon.name}</h2>
-        </li>
-        <li>
-          <ul className="pokemon-types">
-            {pokemon.types.map((t, index) => {
-              return (
-                <li key={index} className="pokemon-types-item">
-                  {t.name}
-                </li>
-              );
-            })}
-          </ul>
-        </li>
-      </ul>
+      <div className="pokemon-info">
+        <ul className="pokemon-types">
+          {pokemon.types.map((t, index) => {
+            return (
+              <li key={index} className={`pokemon-types-item ${t.name}-c`}>
+                {t.name}
+              </li>
+            );
+          })}
+        </ul>
+        <ul className="type-chart">
+          <li>
+            <strong>Super-effective against</strong>:
+            <p>{getDamageRelation(pokemon.types[0].name, "strengths")}</p>
+          </li>
+          <li>
+            <strong>Not-very-effective against</strong>:
+            <p>{getDamageRelation(pokemon.types[0].name, "weaknesses")}</p>
+          </li>
+          <li>
+            <strong>No-effect against</strong>:
+            <p>{getDamageRelation(pokemon.types[0].name, "immunes")}</p>
+          </li>
+        </ul>
+      </div>
+
       <i
         className="close-icon"
         onClick={() => setTeam(team.filter((p) => p.name !== pokemon.name))}
@@ -72,7 +70,7 @@ export default function TeamItem({ pokemon, position }) {
         <img src="/pokeball-placeholder.gif" alt="" className="pokemon-img" />
       </div>
       <div className="pokemon-info">
-        <p className="info-placeholder">[Escola um Pokemon Abaixo]</p>
+        <p className="info-placeholder">#</p>
       </div>
     </li>
   );

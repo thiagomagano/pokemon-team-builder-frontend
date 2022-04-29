@@ -33,17 +33,16 @@ export default function Partys() {
         {partys &&
           partys.map((party, index) => {
             return (
-              <li className="partys-item">
-                <li>
-                  <h2>
-                    #{index + 1} - {party.title}
-                  </h2>
-                </li>
-                <li className="pokemons-party">
-                  {party.pokemons.map((poke) => (
-                    <TeamItem pokemon={poke} />
+              <li key={index} className="partys-item">
+                <h2>
+                  #{index + 1} - {party.title}
+                </h2>
+
+                <ul className="pokemons-party">
+                  {party.pokemons.map((poke, index) => (
+                    <TeamItem key={index} pokemon={poke} />
                   ))}
-                </li>
+                </ul>
               </li>
             );
           })}

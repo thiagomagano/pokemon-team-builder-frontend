@@ -9,6 +9,24 @@
   --color-green: hsl(129 38% 49%);
   --color-white: hsl(0, 0%, 100%);
   --color-black: hsl(221deg 50% 15%);
+
+  --normal: rgb(168, 168, 120);
+  --poison: rgb(160, 64, 160);
+  --bug: rgb(168, 184, 32);
+  --fire: rgb(240, 128, 48);
+  --electric: rgb(248, 208, 48);
+  --dragon: rgb(112, 56, 248);
+  --fighting: rgb(190, 48, 40);
+  --ground: rgb(224, 192, 104);
+  --ghost: rgb(112, 88, 152);
+  --water: rgb(104, 144, 240);
+  --psychic: rgb(248, 88, 136);
+  --flying: rgb(168, 144, 240);
+  --steel: rgb(184, 184, 208);
+  --grass: rgb(120, 200, 80);
+  --ice: rgb(152, 216, 216);
+  --fairy: rgb(222, 165, 222);
+  --rock: rgb(184, 160, 56);
 }
 
 * {
@@ -28,19 +46,19 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-input,
+/* input,
 button {
   font: 400 18px Roboto, sans-serif;
-}
+} */
 
-form input {
+/* form input {
   width: 100%;
   height: 60px;
   color: #333;
   border: 1px solid #dcdce6;
   border-radius: 8px;
   padding: 0 24px;
-}
+} */
 
 .back-link {
   display: flex;
@@ -91,7 +109,7 @@ li {
 }
 
 .container {
-  margin: 5vh 10vw;
+  margin: 2ch 10vw;
 }
 
 
@@ -213,70 +231,75 @@ p .register-container .content section h1 {
 /* NAV COMPONENT */
 nav {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
-  align-items: center;
-  padding: 5vh 10vw;
+  align-items: flex-end;
+  padding: 0 10vw;
+  padding-bottom: 0.7rem;
   background-color: var(--color-dark-blue);
-  height: 8rem;
-}
+  font-size: 1rem;
 
-nav .logo {
-  width: 300px;
-}
-
-nav img {
-  width: 100%;
-}
-
-nav span {
-  visibility: hidden;
-}
-
-
-nav .nav-links ul {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 0.5rem;
 }
 
 nav p {
-  font-size: 20px;
   font-weight: 500;
   color: white;
 }
 
-nav .nav-links ul li a {
+@media (max-width: 666px) {
+  nav p {
+    margin-bottom: 1rem;
+    margin-left: 0.4rem;
+  }
+}
+
+nav img {
+  width: 15vw;
+  min-width: 150px;
+  max-width: 300px;
+  height: fit-content;
+}
+
+
+.nav-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-links li a {
   color: var(--color-white);
-  text-decoration: underline;
-  font-weight: 700;
+  font-weight: 500;
   text-transform: uppercase;
+
   transition: all 0.5s;
-  padding: 0.7rem;
+  padding: 0.4rem;
   border-radius: 0.2rem;
 }
 
-nav .nav-links ul li a:hover {
+.nav-links li a:hover {
   background-color: var(--color-light-blue);
-
+  color: var(--color-light-yellow)
 }
 
 .btn-logout:hover {
   cursor: pointer;
-  text-decoration: underline;
 }
 
 /* TEAM COMPONENT */
 
 .team-form {
   display: grid;
-  grid-template-columns: 4fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 1rem;
-  margin-bottom: 5vh;
+  margin-bottom: 2ch;
 }
 
 .team-form input {
   min-width: 150px;
+  font-size: 1rem;
+  padding: 0.5rem;
+  height: fit-content;
 }
 
 .team-form button {
@@ -286,16 +309,29 @@ nav .nav-links ul li a:hover {
   border: none;
   cursor: pointer;
   transition: all 300ms;
+  font-size: 1rem;
+  border-radius: 0.7rem;
 }
 
+.team-form button:hover,
+.team-form button:active,
+.team-form button:focus {
+  transform: scale(1.05);
+}
 
-.btn-save:hover {
+.btn-save:hover,
+.btn-save:active,
+.btn-save:focus {
   background-color: var(--color-green);
 }
 
-.btn-clean:hover {
+.btn-clean:hover,
+.btn-clean:active,
+.btn-clean:focus {
   background-color: var(--color-light-yellow)
 }
+
+/* #### TEAM #### */
 
 .all-team {
   display: grid;
@@ -308,53 +344,68 @@ nav .nav-links ul li a:hover {
 .team-item {
   position: relative;
   display: grid;
-  grid-template-columns: 10rem 1fr;
+  grid-template-columns: 1fr 2fr;
   padding: 1rem;
-  height: 10rem;
+  gap: 2ch;
   border-radius: 0.3rem;
   border: 1px solid hsla(210, 6%, 14%, 0.15);
-
+  color: var(--color-white)
 }
-
 
 .pokemon-avatar {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  justify-content: space-evenly;
+  align-items: center;
   flex-direction: column;
-  width: 8rem;
+  max-width: 100%;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
 }
 
-.pokemon-img {
-  width: 8rem;
+.pokemon-avatar>img {
+  max-width: 96px;
 }
+
+.pokemon-avatar>p {
+  text-transform: capitalize;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+
 
 .pokemon-info {
   position: relative;
-}
-
-.pokemon-info {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  gap: 1rem;
-
+  gap: 1ch;
 }
 
-.pokemon-name {
-  text-transform: capitalize;
-}
+
 
 .pokemon-types {
-  display: flex;
-  justify-content: flex-start;
-  gap: 0.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  text-align: center;
+  gap: 1ch;
 }
 
 .pokemon-types-item {
-  text-transform: capitalize;
+  text-transform: uppercase;
   border: 1px solid gray;
   padding: 0.2rem;
+  background-color: var(--color-white);
+  border-radius: 0.3rem;
+  font-weight: 600;
+  letter-spacing: 0.2ch;
+}
+
+.type-chart {
+  text-transform: capitalize;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1ch;
 }
 
 .close-icon {
@@ -451,7 +502,8 @@ fieldset>div>label {
 }
 
 .card-image {
-  width: 100%;
+  min-width: 96px;
+  max-width: 110px;
 }
 
 .description-id {
@@ -483,4 +535,144 @@ fieldset>div>label {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2ch;
+}
+
+
+/* TYPES COLORS */
+
+.normal {
+  /* background-image: linear-gradient(to right bottom, var(--normal), var(--color-white)); */
+  background-color: var(--normal);
+}
+
+.normal-c {
+  color: var(--normal);
+}
+
+.fighting {
+  background-color: var(--fighting);
+}
+
+.fighting-c {
+  color: var(--fighting);
+}
+
+.flying {
+  background-color: var(--flying);
+}
+
+.flying-c {
+  color: var(--flying);
+}
+
+.poison {
+  background-color: var(--poison);
+}
+
+.poison-c {
+  color: var(--poison);
+}
+
+.ground {
+  background-color: var(--ground);
+}
+
+.ground-c {
+  color: var(--ground);
+}
+
+.rock {
+  background-color: var(--rock);
+}
+
+.rock-c {
+  color: var(--rock);
+}
+
+.bug {
+  background-color: var(--bug);
+}
+
+.bug-c {
+  color: var(--bug);
+}
+
+.ghost {
+  background-color: var(--ghost);
+}
+
+.ghost-c {
+  color: var(--ghost);
+}
+
+.steel {
+  background-color: var(--steel);
+}
+
+.steel-c {
+  color: var(--steel);
+}
+
+.fire {
+  background-color: var(--fire);
+}
+
+.fire-c {
+  color: var(--fire);
+}
+
+.water {
+  background-color: var(--water);
+}
+
+.water-c {
+  color: var(--water);
+}
+
+.grass {
+  background-color: var(--grass);
+}
+
+.grass-c {
+  color: var(--grass);
+}
+
+.electric {
+  background-color: var(--electric);
+}
+
+.electric-c {
+  color: var(--electric);
+}
+
+.psychic {
+  background-color: var(--psychic);
+}
+
+.psychic-c {
+  color: var(--psychic);
+}
+
+.ice {
+  background-color: var(--ice);
+}
+
+.ice-c {
+  color: var(--ice);
+}
+
+.dragon {
+  background-color: var(--dragon);
+}
+
+.dragon-c {
+  color: var(--dragon);
+}
+
+.fairy {
+  background-color: var(--fairy);
+}
+
+.fairy-c {
+  color: var(--fairy);
 }
