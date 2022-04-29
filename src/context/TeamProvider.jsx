@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 
-const TeamContext = createContext(null);
+const TeamContext = createContext([]);
 
 export const TeamProvider = ({ children }) => {
   const [team, setTeam] = useState([]);
