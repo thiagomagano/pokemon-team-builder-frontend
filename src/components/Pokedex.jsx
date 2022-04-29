@@ -3,8 +3,8 @@ import useTeam from "../hooks/useTeam";
 import api from "../services/api";
 
 export default function Pokedex() {
-  const [types, setTypes] = useState("");
-  const [pokemons, setPokemons] = useState("");
+  const [types, setTypes] = useState([]);
+  const [pokemons, setPokemons] = useState([]);
   const [checkbox, setCheckbox] = useState("");
   const [searchName, setSearchName] = useState("");
 

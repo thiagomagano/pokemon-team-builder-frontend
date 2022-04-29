@@ -46,7 +46,7 @@ export default function Register() {
         <main className="register-container">
           <div className="content">
             <h1>Sucess!</h1>
-            <Link class="back-link" to="/login">
+            <Link className="back-link" to="/login">
               Back to Login
             </Link>
           </div>
@@ -81,10 +81,10 @@ export default function Register() {
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
-              <button class="btn btn-register" type="submit">
+              <button className="btn btn-register" type="submit">
                 Register
               </button>
-              <Link class="back-link" to="/login">
+              <Link className="back-link" to="/login">
                 Back to Login
               </Link>
             </form>

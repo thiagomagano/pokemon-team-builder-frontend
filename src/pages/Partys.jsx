@@ -29,17 +29,17 @@ export default function Partys() {
   return (
     <div>
       <Nav />
-      <ul class="partys">
+      <ul className="partys">
         {partys &&
           partys.map((party, index) => {
             return (
-              <li class="partys-item">
+              <li className="partys-item">
                 <li>
                   <h2>
                     #{index + 1} - {party.title}
                   </h2>
                 </li>
-                <li class="pokemons-party">
+                <li className="pokemons-party">
                   {party.pokemons.map((poke) => (
                     <TeamItem pokemon={poke} />
                   ))}
