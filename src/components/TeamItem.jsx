@@ -35,11 +35,7 @@ export default function TeamItem({ pokemon, position }) {
   ) : (
     <li className="team-item">
       <div className="pokemon-avatar">
-        <img
-          src="../../public/pokeball-placeholder.gif"
-          alt=""
-          className="pokemon-img"
-        />
+        <img src="/pokeball-placeholder.gif" alt="" className="pokemon-img" />
       </div>
       <div className="pokemon-info">
         <p className="info-placeholder">[Escola um Pokemon Abaixo]</p>
