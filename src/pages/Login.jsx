@@ -25,6 +25,9 @@ export default function Login() {
 
   async function handleLogin(e) {
     e.preventDefault();
+    const toastId = toast.loading("Realizando Login..", {
+      duration: 5000,
+    });
 
     try {
       const response = await api.post(LOGIN_URL, { email });
@@ -36,10 +39,13 @@ export default function Login() {
       localStorage.setItem("u", JSON.stringify({ email, id, name }));
 
       setEmail("");
+      toast.dismiss(toastId);
+      toast.success(`Welcome ${name}! 🙋🏻‍♂️`);
 
       navigate("/profile", { replace: true });
     } catch (err) {
-      toast.error("Error on Login");
+      toast.dismiss(toastId);
+      toast.error("Login Failed");
       if (!err?.response) {
         setErrMsg("No Server Response");
       } else if (err.response?.status === 400) {
@@ -53,34 +59,30 @@ export default function Login() {
   }
 
   return (
-    <main>
-      <div className="login-container">
-        <section className="form-container">
+    <div className="login-container">
+      <section className="form-container">
+        <form onSubmit={handleLogin} className="form-enter">
           <img src="/logo.png" alt="Pokemon Team Builder" />
-          <form onSubmit={handleLogin}>
-            <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
-              {errMsg}
-            </p>
-            <h1>Faça seu Login</h1>
-            <input
-              ref={emailRef}
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-            <button className="btn" type="submit">
-              Sign In
-            </button>
-
-            <Link className="back-link" to="/register">
-              Need an Account? Sign Up
-            </Link>
-          </form>
-        </section>
-        <img className="hero" src="/hero.png" alt="Os 3 Pokemons Iniciais" />
-      </div>
-    </main>
+          <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
+            {errMsg}
+          </p>
+          <input
+            ref={emailRef}
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <button className="btn" type="submit">
+            Sign In
+          </button>
+          <Link className="back-link" to="/register">
+            Need an Account? Sign Up
+          </Link>
+        </form>
+      </section>
+      <img className="hero" src="/hero.png" alt="Os 3 Pokemons Iniciais" />
+    </div>
   );
 }

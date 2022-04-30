@@ -1,21 +1,25 @@
 import { useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
+import { Link, useNavigate } from "react-router-dom";
 import api from "../services/api";
 
 const REGISTER_URL = "/register";
 
 export default function Register() {
   const errRef = useRef();
+  const navigate = useNavigate();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
 
   const [sucess, setSucess] = useState(false);
-  const [errMsg, setErrMsg] = useState("");
+  const [errMsg, setErrMsg] = useState("error!");
 
   async function handleRegister(e) {
     e.preventDefault();
-
+    const toastId = toast.loading("Realizando Login..", {
+      duration: 5000,
+    });
     const newUser = {
       name,
       email,
@@ -25,8 +29,12 @@ export default function Register() {
       const response = await api.post(REGISTER_URL, newUser);
 
       setSucess(true);
+      toast.dismiss(toastId);
+      toast.success(`Register is done`);
+
       setName("");
       setEmail("");
+      navigate("/login", { replace: true });
     } catch (err) {
       if (!err?.response) {
         setErrMsg("No Server Response");
@@ -35,6 +43,8 @@ export default function Register() {
       } else {
         setErrMsg("Registration Failed");
       }
+      toast.dismiss(toastId);
+      toast.error(`${errMsg}`);
     }
   }
 
@@ -42,7 +52,7 @@ export default function Register() {
     <>
       {sucess ? (
         <main className="register-container">
-          <div className="content">
+          <div className="box">
             <h1>Sucess!</h1>
             <Link className="back-link" to="/login">
               Back to Login
@@ -51,20 +61,11 @@ export default function Register() {
         </main>
       ) : (
         <main className="register-container">
-          {/* <p
-            ref={errRef}
-            className={errMsg ? "errmsg" : "offscreen"}
-            aria-live="assertive"
-          >
-            {errMsg}
-          </p> */}
-          <div className="content">
-            <section>
-              <img src="/logo.png" alt="Pokemon Team Builder" />
-              <h1>Register</h1>
-              <p>Login and start building your pokemon teams!</p>
-            </section>
-            <form onSubmit={handleRegister}>
+          <div className="box">
+            <img src="/logo.png" alt="Pokemon Team Builder" />
+            <h1>Register</h1>
+            <p>Login and start building your pokemon teams!</p>
+            <form onSubmit={handleRegister} className="form-enter">
               <input
                 type="text"
                 placeholder="Name"
