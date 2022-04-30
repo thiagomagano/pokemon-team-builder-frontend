@@ -14,7 +14,7 @@ export default function Team() {
   async function saveTeam(e) {
     e.preventDefault();
     const newParty = {
-      title: teamTitleRef.current.value || "Minha Party",
+      title: teamTitleRef.current.value || "My Team",
       pokemonList: team.map((t) => t.id),
       userId: auth.id,
     };

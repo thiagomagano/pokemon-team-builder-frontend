@@ -1,6 +1,6 @@
-import { useContext, useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import useAuth from "../hooks/useAuth";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import api from "../services/api";
 import toast from "react-hot-toast";
@@ -11,7 +11,6 @@ export default function Login() {
   const { setAuth } = useAuth();
 
   const navigate = useNavigate();
-  const location = useLocation();
 
   const errRef = useRef();
   const emailRef = useRef();
@@ -25,7 +24,7 @@ export default function Login() {
 
   async function handleLogin(e) {
     e.preventDefault();
-    const toastId = toast.loading("Realizando Login..", {
+    const toastId = toast.loading("Performing login...", {
       duration: 5000,
     });
 
@@ -39,6 +38,7 @@ export default function Login() {
       localStorage.setItem("u", JSON.stringify({ email, id, name }));
 
       setEmail("");
+
       toast.dismiss(toastId);
       toast.success(`Welcome ${name}! 🙋🏻‍♂️`);
 
@@ -82,7 +82,11 @@ export default function Login() {
           </Link>
         </form>
       </section>
-      <img className="hero" src="/hero.png" alt="Os 3 Pokemons Iniciais" />
+      <img
+        className="hero"
+        src="/hero.png"
+        alt="The 3 starter Pokemons happy"
+      />
     </div>
   );
 }
