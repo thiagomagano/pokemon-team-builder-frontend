@@ -77,7 +77,11 @@ export default function TeamItem({ pokemon, inBuilder }) {
   ) : (
     <li className="team-item with-border">
       <div className="pokemon-avatar">
-        <img src="/pokeball-placeholder.gif" alt="" className="pokemon-img" />
+        <img
+          src="/pokeball-placeholder.gif"
+          alt="pokeball placeholder"
+          className="pokemon-img"
+        />
       </div>
     </li>
   );
