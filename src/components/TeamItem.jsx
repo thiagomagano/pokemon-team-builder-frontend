@@ -18,6 +18,11 @@ export default function TeamItem({ pokemon, position }) {
     return `${relations.join(" | ")}`;
   }
 
+  function getPokedexImage(id) {
+    const paddedId = ("00" + id).slice(-3);
+    return `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${paddedId}.png`;
+  }
+
   useEffect(() => {}, [pokemon]);
 
   return pokemon ? (
@@ -29,12 +34,13 @@ export default function TeamItem({ pokemon, position }) {
       }
     >
       <div className="pokemon-avatar">
+        <p className="pokemon-name">#{`${pokemon.id}`}</p>
         <img
           className="pokemon-img"
-          src={pokemon.avatarUrl}
+          src={getPokedexImage(pokemon.id) || pokemon.avatarUrl}
           alt={`Sprite for pokemon: ${pokemon.name}`}
         />
-        <p className="pokemon-name">#{`${pokemon.id} ${pokemon.name}`}</p>
+        <p className="pokemon-name">{`${pokemon.name}`}</p>
       </div>
 
       <div className="pokemon-info">
@@ -63,20 +69,17 @@ export default function TeamItem({ pokemon, position }) {
         </ul>
       </div>
 
-      <i
+      <span
         className="close-icon"
         onClick={() => setTeam(team.filter((p) => p.name !== pokemon.name))}
       >
-        x
-      </i>
+        ❌
+      </span>
     </li>
   ) : (
-    <li className="team-item">
+    <li className="team-item with-border">
       <div className="pokemon-avatar">
         <img src="/pokeball-placeholder.gif" alt="" className="pokemon-img" />
-      </div>
-      <div className="pokemon-info">
-        <p className="info-placeholder">#</p>
       </div>
     </li>
   );

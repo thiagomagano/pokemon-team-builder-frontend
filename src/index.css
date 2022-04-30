@@ -27,6 +27,8 @@
   --ice: rgb(152, 216, 216);
   --fairy: rgb(222, 165, 222);
   --rock: rgb(184, 160, 56);
+
+  --gradient-angle: 0.25turn;
 }
 
 * {
@@ -348,8 +350,12 @@ nav img {
   padding: 1rem;
   gap: 2ch;
   border-radius: 0.3rem;
-  border: 1px solid hsla(210, 6%, 14%, 0.15);
+
   color: var(--color-white);
+}
+
+.with-border {
+  border: 1px solid hsla(210, 6%, 14%, 0.15);
 }
 
 .pokemon-avatar {
@@ -410,8 +416,20 @@ nav img {
 
 .close-icon {
   position: absolute;
-  bottom: 2%;
-  right: 2%;
+  bottom: 5%;
+  right: 5%;
+  cursor: pointer;
+  transition: all 500ms;
+  padding: 0.3ch;
+}
+
+.close-icon:hover,
+.close-icon:focus {
+  transform: scale(1.1);
+}
+
+.close-icon:active {
+  transform: scale(0.9);
 }
 
 /* POKEDEX */
@@ -679,102 +697,102 @@ fieldset>div>label {
 
 /* Two Types */
 .bug-grass {
-  background: linear-gradient(to right bottom, var(--bug), var(--grass));
+  background: linear-gradient(var(--gradient-angle), var(--bug), var(--grass));
 }
 
 .poison-grass {
-  background: linear-gradient(to right bottom, var(--poison), var(--grass));
+  background: linear-gradient(var(--gradient-angle), var(--poison), var(--grass));
 }
 
 .poison-bug {
-  background: linear-gradient(to right bottom, var(--poison), var(--bug));
+  background: linear-gradient(var(--gradient-angle), var(--poison), var(--bug));
 }
 
 .poison-ground {
-  background: linear-gradient(to right bottom, var(--poison), var(--ground));
+  background: linear-gradient(var(--gradient-angle), var(--poison), var(--ground));
 }
 
 .poison-water {
-  background: linear-gradient(to right bottom, var(--poison), var(--water));
+  background: linear-gradient(var(--gradient-angle), var(--poison), var(--water));
 }
 
 .poison-ghost {
-  background: linear-gradient(to right bottom, var(--poison), var(--ghost));
+  background: linear-gradient(var(--gradient-angle), var(--poison), var(--ghost));
 }
 
 
 .flying-poison {
-  background: linear-gradient(to right bottom, var(--flying), var(--poison));
+  background: linear-gradient(var(--gradient-angle), var(--flying), var(--poison));
 }
 
 .flying-fire {
-  background: linear-gradient(to right bottom, var(--flying), var(--fire));
+  background: linear-gradient(var(--gradient-angle), var(--flying), var(--fire));
 }
 
 .flying-bug {
-  background: linear-gradient(to right bottom, var(--flying), var(--bug));
+  background: linear-gradient(var(--gradient-angle), var(--flying), var(--bug));
 }
 
 .flying-rock {
-  background: linear-gradient(to right bottom, var(--flying), var(--rock));
+  background: linear-gradient(var(--gradient-angle), var(--flying), var(--rock));
 }
 
 .flying-water {
-  background: linear-gradient(to right bottom, var(--flying), var(--water));
+  background: linear-gradient(var(--gradient-angle), var(--flying), var(--water));
 }
 
 .flying-dragon {
-  background: linear-gradient(to right bottom, var(--flying), var(--dragon));
+  background: linear-gradient(var(--gradient-angle), var(--flying), var(--dragon));
 }
 
 .flying-electric {
-  background: linear-gradient(to right bottom, var(--flying), var(--electric));
+  background: linear-gradient(var(--gradient-angle), var(--flying), var(--electric));
 }
 
 .flying-ice {
-  background: linear-gradient(to right bottom, var(--flying), var(--ice));
+  background: linear-gradient(var(--gradient-angle), var(--flying), var(--ice));
 }
 
 .normal-flying {
-  background: linear-gradient(to right bottom, var(--normal), var(--flying));
+  background: linear-gradient(var(--gradient-angle), var(--normal), var(--flying));
 }
 
 .ground-rock {
-  background: linear-gradient(to right bottom, var(--ground), var(--rock));
+  background: linear-gradient(var(--gradient-angle), var(--ground), var(--rock));
 }
 
 .rock-water {
-  background: linear-gradient(to right bottom, var(--rock), var(--water));
+  background: linear-gradient(var(--gradient-angle), var(--rock), var(--water));
 }
 
 .steel-electric {
-  background: linear-gradient(to right bottom, var(--steel), var(--electric));
+  background: linear-gradient(var(--gradient-angle), var(--steel), var(--electric));
 }
 
 .fighting-water {
-  background: linear-gradient(to right bottom, var(--fighting), var(--water));
+  background: linear-gradient(var(--gradient-angle), var(--fighting), var(--water));
 }
 
 .water-psychic {
-  background: linear-gradient(to right bottom, var(--water), var(--psychic));
+  background: linear-gradient(var(--gradient-angle), var(--water), var(--psychic));
 }
 
 .water-ice {
-  background: linear-gradient(to right bottom, var(--water), var(--ice));
+  background: linear-gradient(var(--gradient-angle), var(--water), var(--ice));
 }
 
 .grass-psychic {
-  background: linear-gradient(to right bottom, var(--grass), var(--psychic));
+  background: linear-gradient(var(--gradient-angle), var(--grass), var(--psychic));
 }
 
 .psychic-fairy {
-  background: linear-gradient(to right bottom, var(--psychic), var(--fairy));
+  background: linear-gradient(var(--gradient-angle), var(--psychic), var(--fairy));
 }
 
 .psychic-ice {
-  background: linear-gradient(to right bottom, var(--psychic), var(--ice));
+  background: linear-gradient(var(--gradient-angle), var(--psychic), var(--ice));
 }
 
 .normal-fairy {
-  background: linear-gradient(to right bottom, var(--normal), var(--fairy));
+  background: linear-gradient(var(--gradient-angle), var(--normal), var(--fairy));
 }
