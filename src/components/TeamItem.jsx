@@ -21,7 +21,13 @@ export default function TeamItem({ pokemon, position }) {
   useEffect(() => {}, [pokemon]);
 
   return pokemon ? (
-    <li className={`team-item ${pokemon.types[0].name}`}>
+    <li
+      className={
+        pokemon.types.length === 1
+          ? `team-item ${pokemon.types[0].name}`
+          : `team-item ${pokemon.types[0].name} ${pokemon.types[0].name}-${pokemon.types[1].name}`
+      }
+    >
       <div className="pokemon-avatar">
         <img
           className="pokemon-img"
