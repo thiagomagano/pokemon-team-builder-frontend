@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import useTeam from "../hooks/useTeam";
 import api from "../services/api";
 
@@ -119,11 +120,21 @@ function PokemonCard({ pokemon }) {
   const { team, setTeam } = useTeam();
 
   function insertIntoParty(pokemon) {
-    team.length < 6 ? setTeam([...team, pokemon]) : console.log("team is full");
+    if (team.length < 6) {
+      setTeam([...team, pokemon]);
+      toast.success(`${pokemon.name}  has been added to your team`);
+    } else {
+      toast.error("Your team is already full");
+    }
   }
 
   return (
-    <li className="pokemon-card" onClick={() => insertIntoParty(pokemon)}>
+    <li
+      className="pokemon-card"
+      onClick={() => {
+        insertIntoParty(pokemon);
+      }}
+    >
       <ul>
         <li className="card-image-container">
           <img

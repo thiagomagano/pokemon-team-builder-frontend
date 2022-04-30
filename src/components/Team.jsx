@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import toast from "react-hot-toast";
 import useAuth from "../hooks/useAuth";
 import useTeam from "../hooks/useTeam";
 import api from "../services/api";
@@ -18,7 +19,11 @@ export default function Team() {
       userId: auth.id,
     };
 
-    const response = await api.post("/party", newParty);
+    toast.promise(api.post("/party", newParty), {
+      loading: "Saving...",
+      success: <b>Team saved! 💾</b>,
+      error: <b>Could not save. ☹</b>,
+    });
 
     teamTitleRef.current.value = "";
   }
@@ -35,6 +40,9 @@ export default function Team() {
           onClick={(e) => {
             e.preventDefault();
             setTeam([]);
+            toast.success("Your team has been emptied", {
+              icon: "🧹",
+            });
           }}
         >
           Clean Team

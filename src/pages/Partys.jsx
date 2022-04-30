@@ -4,13 +4,16 @@ import api from "../services/api";
 
 import Nav from "../components/Nav";
 import TeamItem from "../components/TeamItem";
+import Loader from "../components/Loader";
 
 export default function Partys() {
   const { auth } = useAuth();
   const [partys, setPartys] = useState([]);
   const [user, setUser] = useState("");
+  const [loading, setLoading] = useState(false);
 
   async function getAllPartysByUser(user) {
+    setLoading(true);
     const userLocal = JSON.parse(localStorage.getItem("u"));
     setUser();
     const response = await api.get("/party", {
@@ -20,6 +23,7 @@ export default function Partys() {
     });
     const data = await response?.data;
     setPartys(data);
+    setLoading(false);
   }
 
   useEffect(() => {
@@ -47,6 +51,7 @@ export default function Partys() {
             );
           })}
       </ul>
+      <Loader show={loading} />
     </div>
   );
 }

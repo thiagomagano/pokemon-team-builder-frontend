@@ -10,6 +10,7 @@
   --color-white: hsl(0, 0%, 100%);
   --color-black: hsl(221deg 50% 15%);
 
+  --bg-color: hsl(240, 20%, 95%);
   --normal: rgb(168, 168, 120);
   --poison: rgb(160, 64, 160);
   --bug: rgb(168, 184, 32);
@@ -370,6 +371,7 @@ nav img {
 
 .pokemon-avatar>img {
   max-width: 96px;
+  height: fit-content;
 }
 
 .pokemon-avatar>p {
@@ -795,4 +797,26 @@ fieldset>div>label {
 
 .normal-fairy {
   background: linear-gradient(var(--gradient-angle), var(--normal), var(--fairy));
+}
+
+/* Loader */
+
+.loader {
+  border: 10px solid var(--bg-color);
+  border-top: 10px solid var(--color-light-blue);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 2s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }

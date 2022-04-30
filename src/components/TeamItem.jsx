@@ -1,6 +1,7 @@
 import useTeam from "../hooks/useTeam";
 import { useEffect } from "react";
 import typechart from "../utils/typechart";
+import toast from "react-hot-toast";
 
 export default function TeamItem({ pokemon, inBuilder }) {
   const { team, setTeam } = useTeam();
@@ -64,7 +65,10 @@ export default function TeamItem({ pokemon, inBuilder }) {
       {inBuilder && (
         <span
           className="close-icon"
-          onClick={() => setTeam(team.filter((p) => p.name !== pokemon.name))}
+          onClick={() => {
+            setTeam(team.filter((p) => p.name !== pokemon.name));
+            toast.success(`${pokemon.name} has been removed from your team`);
+          }}
         >
           ❌
         </span>

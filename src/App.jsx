@@ -1,5 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 
+import toast, { Toaster } from "react-hot-toast";
+
 import { AuthProvider } from "./context/AuthProvider";
 
 import Layout from "./pages/Layout";
@@ -29,6 +31,7 @@ function App() {
           <Route path="/*" element={<Missing />} />
         </Route>
       </Routes>
+      <Toaster />
     </AuthProvider>
   );
 }

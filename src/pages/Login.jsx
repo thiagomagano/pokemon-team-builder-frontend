@@ -3,6 +3,7 @@ import useAuth from "../hooks/useAuth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import api from "../services/api";
+import toast from "react-hot-toast";
 
 const LOGIN_URL = "/login";
 
@@ -38,6 +39,7 @@ export default function Login() {
 
       navigate("/profile", { replace: true });
     } catch (err) {
+      toast.error("Error on Login");
       if (!err?.response) {
         setErrMsg("No Server Response");
       } else if (err.response?.status === 400) {
