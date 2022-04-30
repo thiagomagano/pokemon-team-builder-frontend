@@ -9,9 +9,6 @@ export default function Pokedex() {
   const [filterTypes, setFilterTypes] = useState([]);
   const [pokemonsFilter, setPokemonsFilter] = useState([]);
 
-  // let filterTypes = [];
-  // let pokemonsFilter = [];
-
   async function getAllTypes() {
     const response = await api.get("/types");
     const data = await response?.data;
@@ -63,7 +60,6 @@ export default function Pokedex() {
     } else {
       setFilterTypes(filterTypes.filter((f) => f != filter));
     }
-    console.log(filterTypes);
   }
 
   return (

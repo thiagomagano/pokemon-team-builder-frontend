@@ -18,10 +18,7 @@ export default function Team() {
       userId: auth.id,
     };
 
-    console.log(newParty);
-
     const response = await api.post("/party", newParty);
-    const data = console.log(response.data);
 
     teamTitleRef.current.value = "";
   }
@@ -44,12 +41,12 @@ export default function Team() {
         </button>
       </form>
       <ul className="all-team">
-        <TeamItem position={1} pokemon={team[0] || null} />
-        <TeamItem position={2} pokemon={team[1] || null} />
-        <TeamItem position={3} pokemon={team[2] || null} />
-        <TeamItem position={4} pokemon={team[3] || null} />
-        <TeamItem position={5} pokemon={team[4] || null} />
-        <TeamItem position={6} pokemon={team[5] || null} />
+        <TeamItem pokemon={team[0] || null} inBuilder={true} />
+        <TeamItem pokemon={team[1] || null} inBuilder={true} />
+        <TeamItem pokemon={team[2] || null} inBuilder={true} />
+        <TeamItem pokemon={team[3] || null} inBuilder={true} />
+        <TeamItem pokemon={team[4] || null} inBuilder={true} />
+        <TeamItem pokemon={team[5] || null} inBuilder={true} />
       </ul>
     </section>
   );

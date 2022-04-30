@@ -24,8 +24,6 @@ export default function Register() {
     try {
       const response = await api.post(REGISTER_URL, newUser);
 
-      console.log(JSON.stringify(response?.data));
-
       setSucess(true);
       setName("");
       setEmail("");

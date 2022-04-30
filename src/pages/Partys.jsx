@@ -40,7 +40,7 @@ export default function Partys() {
 
                 <ul className="pokemons-party">
                   {party.pokemons.map((poke, index) => (
-                    <TeamItem key={index} pokemon={poke} />
+                    <TeamItem key={index} pokemon={poke} inBuilder={false} />
                   ))}
                 </ul>
               </li>

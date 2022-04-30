@@ -1,15 +1,8 @@
 import useTeam from "../hooks/useTeam";
-import axios from "axios";
 import { useEffect } from "react";
 import typechart from "../utils/typechart";
 
-const pokeapi = axios.create({
-  baseURL: "https://pokeapi.co/api/v2/type/",
-});
-
-const API_ENDPOINT = "https://pokeapi.co/api/v2/type";
-
-export default function TeamItem({ pokemon, position }) {
+export default function TeamItem({ pokemon, inBuilder }) {
   const { team, setTeam } = useTeam();
 
   function getDamageRelation(type, relation) {
@@ -68,13 +61,14 @@ export default function TeamItem({ pokemon, position }) {
           </li>
         </ul>
       </div>
-
-      <span
-        className="close-icon"
-        onClick={() => setTeam(team.filter((p) => p.name !== pokemon.name))}
-      >
-        ❌
-      </span>
+      {inBuilder && (
+        <span
+          className="close-icon"
+          onClick={() => setTeam(team.filter((p) => p.name !== pokemon.name))}
+        >
+          ❌
+        </span>
+      )}
     </li>
   ) : (
     <li className="team-item with-border">

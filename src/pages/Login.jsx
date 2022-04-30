@@ -28,8 +28,6 @@ export default function Login() {
     try {
       const response = await api.post(LOGIN_URL, { email });
 
-      console.log(JSON.stringify(response?.data));
-
       const id = response?.data?.id;
       const name = response?.data?.name;
 
