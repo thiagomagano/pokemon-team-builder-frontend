@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import useTeam from "../hooks/useTeam";
 import api from "../services/api";
+import Loader from "./Loader";
 
 export default function Pokedex() {
   const [types, setTypes] = useState([]);
@@ -93,7 +94,7 @@ export default function Pokedex() {
             pokemonsFilter.map((pokemon, index) => {
               return <PokemonCard pokemon={pokemon} key={index} />;
             })}
-          {isLoading && <li>Loading...</li>}
+          {isLoading && <Loader show={isLoading} />}
         </ul>
       </div>
     </div>
