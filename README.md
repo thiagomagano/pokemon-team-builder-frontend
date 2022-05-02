@@ -10,11 +10,12 @@ A simple app to train my full-stack development skills.
 
 This app is a pokemon team builder, the title is already very explanatory 😝.
 The main objective is to select up to 6 pokemons to assemble an ideal team, exploring pokemons strengths and weaknesses based on their types.
-You will be able to save your teams and then consult them.
+You will be able to save your teams and then consult Anytime you want.
 
 ### The Pokemon Battle System
-Think 'Rock Paper Scissors', but more intense and complex. 'Rock Paper Scissors' game has 3 types and it is enough to keep you and your opponent guessing. Imagine managing 18 types with 6 Pokémons! How can anyone play Pokémon without some serious memory skills?!
 
+It's a system similar to the game **"Rock, Paper and Scissors"** but much more complex and intense. In "Rock, Paper and Scissors" there are only **3 types** to memorize.
+In Pokemon there are **18 types** and they can be related in **4 different intensities** ([Check the relationship between types of Pokemon here](https://pokemondb.net/type)), So for coming out as a winner takes a lot of memory effort! That's why **POKEMON TEAM BUILDER** can help you.
 
 ## Demo
 
@@ -25,6 +26,7 @@ Think 'Rock Paper Scissors', but more intense and complex. 'Rock Paper Scissors'
 
 - Collection of 151 Pokémon (the first generation, the only one that matters 😛) thumbnails, IDs and Names - build a database using looped API calls to Pokémon API
 - Clickable and Selectable Pokémons - show more details when selected
+- Color system based on pokemon types
 - Filter Bar - to only show Pokémons that types you want
 - Register your name and email and log in to the app
 - Name and save as many teams as you like
@@ -32,7 +34,7 @@ Think 'Rock Paper Scissors', but more intense and complex. 'Rock Paper Scissors'
 
 ## Tech Stack
 
-#### Client 
+#### Frontend 
 
 - **React**: Library to make reusable components
 - **CSS**: Only CSS Vanilla to add some layouts and styles to the components
@@ -41,7 +43,8 @@ Think 'Rock Paper Scissors', but more intense and complex. 'Rock Paper Scissors'
 - **React-Hot-Toast**: Notifications and feedbacks to the user
 - **Vite**: Initial boilerplate and  builder to deployment
 
-#### Server: 
+#### Backend
+
 - **Node**: Server side Javascript runtime
 - **Typescript**: Handle types
 - **Express**: Framework to easy handle https method calls
@@ -63,11 +66,12 @@ Think 'Rock Paper Scissors', but more intense and complex. 'Rock Paper Scissors'
 
 #### General Learned
 
-- With the development of this application I was able to understand a lot how the "trial and error" learning method works.
+- With the development of this application I was able to understand a lot how the "**trial and error**" learning method works.
+It's actually quite satisfying after hours of racking your brains to find an ideal **solution to the problem**.
 
-- É realmente muito satisfatório após horas quebrando a cabeça, achar uma solução ideal para o problema.
-
-- Aprendi também a ler bastante a documentação das linguagens e bibliotecas para implementar algumas features, e claro muito google e stack overflow para consertar os bugs
+- I also learned to read a lot the **documentation** of languages and libraries to implement some features
+ 
+- And of course a lot of **Google** and **Stackoverflow** to fix some bugs
 
 #### Tech Learned
 
@@ -158,54 +162,4 @@ Here are some related projects
 ## Feedback
 
 If you have any feedback, please contact me at thiagomagano1993@outlook.com
-
-
-
-## API Reference
-
-#### Get all Pokemons
-
-```http
-  GET /pokemons
-```
-#### Get all Users
-
-```http
-  GET /users
-```
-#### Get all Types
-
-```http
-  GET /types
-```
-
-#### Get teams of a user
-
-```http
-  GET /party?userId=${id}
-```
-
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `id`      | `int` | **Required**. Id of user to fetch |
-
-#### Create User
-```http
-  POST /register
-```
-
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `name`      | `string` | **Required**. User Name |
-| `email`      | `string` | **@Unique** **Required**. User Email |
-
-#### Login to the app
-```http
-  POST /login
-```
-
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `email`      | `string` | **Required**. User Email |
-
 

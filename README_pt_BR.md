@@ -1,20 +1,21 @@
 
 ![Logo](https://pokemonteambuilder.vercel.app/logo.png)
 
-
 # Pokemon Team Builder
 
-A simple app to train my full-stack development skills.
+Um app simples para treinar minhas habilidades de desenvolvimento full-stack.
 
-### About the app
+### Sobre o app
 
-This app is a pokemon team builder, the title is already very explanatory 😝.
-The main objective is to select up to 6 pokemons to assemble an ideal team, exploring pokemons strengths and weaknesses based on their types.
-You will be able to save your teams and then consult them.
+Este app é um construtor de equipes pokemon, o título já é bem explicativo 😝.
+O objetivo principal é selecionar até 6 pokémons para montar um time ideal, explorando os pontos fortes e fracos dos pokémons com base em seus tipos.
+Você poderá salvar suas equipes e depois consultá-las a hora que quiser.
 
-### The Pokemon Battle System
-Think 'Rock Paper Scissors', but more intense and complex. 'Rock Paper Scissors' game has 3 types and it is enough to keep you and your opponent guessing. Imagine managing 18 types with 6 Pokémons! How can anyone play Pokémon without some serious memory skills?!
+### O Sistema de Batalhas Pokémon
 
+É um sistema parecido com o jogo **"Pedra, Papel e Tesoura"** porém muito mais complexo e intenso. No "Pedra, Papel e Tesoura" são apenas **3 tipos** para memorizar.
+Já em Pokemon são **18 tipos**  e eles podem se relacionar em **4 intensidades** diferentes ([Confira a relação entre os tipos de Pokémon aqui](https://pokemondb.net/type)), Então para sair como ganhador é preciso um esforço grande de memória! 
+Por isso o **POKEMON TEAM BUILDER** pode te ajudar.
 
 ## Demo
 
@@ -23,25 +24,27 @@ Think 'Rock Paper Scissors', but more intense and complex. 'Rock Paper Scissors'
 
 ## Features
 
-- Collection of 151 Pokémon (the first generation, the only one that matters 😛) thumbnails, IDs and Names - build a database using looped API calls to Pokémon API
-- Clickable and Selectable Pokémons - show more details when selected
-- Filter Bar - to only show Pokémons that types you want
-- Register your name and email and log in to the app
-- Name and save as many teams as you like
+- Coleção de 151 Pokémon (a primeira geração, a única que importa 😛) com suas miniaturas, IDs e nomes - Contruídos via chamadas para a **Pokemon API** e salvos no banco de dados via seeding.
+- Pokémons clicáveis e selecionáveis - mostram mais detalhes quando selecionados
+- Sistema de cores de acordo com o tipo do Pokemon
+- Barra de filtro - para mostrar apenas os Pokémons dos tipos que você deseja
+- Cadastre seu nome e e-mail e faça login no aplicativo
+- Nomeie e salve quantas equipes quiser
 
 
-## Tech Stack
+## Tecnologias Utilizadas
 
-#### Client 
+#### Frontend
 
-- **React**: Library to make reusable components
-- **CSS**: Only CSS Vanilla to add some layouts and styles to the components
-- **Axios**: Handle HTTP requests, connect to the API
-- **React-Router-Dom**: Handle app navigation and protected routes
-- **React-Hot-Toast**: Notifications and feedbacks to the user
-- **Vite**: Initial boilerplate and  builder to deployment
+- **React**: Biblioteca para criar componentes reutilizáveis
+- **CSS**: Somente CSS Vanilla para adicionar alguns layouts e estilos aos componentes
+- **Axios**: processar solicitações HTTP, conectar-se a API no backend
+- **React-Router-Dom**: gerenciar a navegação do aplicativo e as criar rotas protegidas
+- **React-Hot-Toast**: Notificações e feedbacks para o usuário
+- **Vite**: template inicial e para fazer a build para o deploy
 
-#### Server: 
+#### Backend
+
 - **Node**: Server side Javascript runtime
 - **Typescript**: Handle types
 - **Express**: Framework to easy handle https method calls
@@ -49,27 +52,27 @@ Think 'Rock Paper Scissors', but more intense and complex. 'Rock Paper Scissors'
 - **Prisma**:ORM to easy handle database model, schemas, migrations and data seeding
 - **Postgress**: SQL database to store app informations
 
-#### Other:
+#### Outros
 
-- **GIT**: Track the state of the codebase
-- **Github**: Local to store the repository
-- **Notion**: Track the project roadmap and features
-- **Insomnia**: To test API calls
-- **Heroku**: To deploy app backend using CLI tools
-- **Vercel**: To deploy app frontend
+- **GIT**: Rastrear as mudanças do código base
+- **Github**: Local para armazenar o repositório
+- **Notion**: Acompanhar os recursos e o desenvolvimento das fetures do projeto
+- **Insomnia**: para testar as chamadas de API
+- **Heroku**: para fazer o deploy do back-end usando ferramentas CLI
+- **Vercel**: para fazer o deploy do front-end do aplicativo
 
+## Aprendizado
 
-## Lessons Learned
+#### Aprendizado geral
 
-#### General Learned
+- Com o desenvolvimento desse app pude entender muito como funciona o método de aprendizagem **"tentativa e erro"**.
+É realmente muito satisfatório após horas quebrando a cabeça, achar uma solução ideal para o problema.
 
-- With the development of this application I was able to understand a lot how the "trial and error" learning method works.
+- Aprendi também a ler bastante a **documentação** das linguagens e bibliotecas para implementar algumas features. 
 
-- É realmente muito satisfatório após horas quebrando a cabeça, achar uma solução ideal para o problema.
+- E claro muito **Google** e **Stackoverflow** para consertar os bugs
 
-- Aprendi também a ler bastante a documentação das linguagens e bibliotecas para implementar algumas features, e claro muito google e stack overflow para consertar os bugs
-
-#### Tech Learns
+#### Tecnoglias aprendidas
 
 - Aprendi como a ferramenta do **Prisma** pode ser poderosa, pois pude modificar o esquema do banco de dados com muita facilidade, tipar os modelos de forma fácil e rápida.
 
@@ -88,6 +91,7 @@ Think 'Rock Paper Scissors', but more intense and complex. 'Rock Paper Scissors'
 - Aprendi a utilizar a biblioteca **REACT-HOT-TOAST** para criar notificações incrivéis
 
 - Aprendi a utilizar **React-Router-Dom V6** Para criar rotas protegias
+
 - Aprendi a criar **React Custom Hooks** para lidar com autenticação
 
 - Aprendi como fazer o deploy de uma aplicação direito da linha de comando e como acessar a máquina direto na nuvem com **HEROKU**
@@ -99,41 +103,49 @@ Estou ciente de que é preciso acrescentar melhorias no código para deixa-lo ma
 
 - Tests
 - CSS Architeture
-- MVC to the  REST API
-- SOLID principles
-- Typescript with React
-- A11y
+- MVC para a REST API
+- Princípios de SOLID
+- Typescript com React
+- A11y (acessibilidade)
 
-## Next Features
+## Próximas Passos
 
-The next upgrades to the app
+Algumas atualizações que estou em mente para dar upgrade no app:
  
- - dsdsad
- - dasdsadas
- - dsaddasda
+ - [ ] Lidar com a deleção de times
+ - [ ] Lidar com a edição de pokemons direto na tela de time 
+ - [ ] Geração de times de forma randômica
+ - [ ] Feed com todos os times já criados pelos usuários
+ - [ ] Botão de like/favoritar para os times
+ - [ ] Tabela com analise do time em relação a forças e fraquezas
+ - [ ] Adicionar mais pokemons de outras gerações
+ - [ ] Autenticação com senha
+ - [ ] Mais estatisticas dos pokemons (habilidades, golpes e etc.)
+ - [ ] Páginas dedicadas para cada pokemon
+ - [ ] Batalhas pokemon
 
 
-## Run Locally
+## Rode a aplicação localmente
 
-Clone the project
+Clone o repositório do projeto
 
 ```bash
   git clone https://github.com/thiagomagano/pokemon-team-builder-frontend
 ```
 
-Go to the project directory
+Vá até a pasta do projeto
 
 ```bash
   cd pokemon-team-builder-frontend
 ```
 
-Install dependencies
+Instale as dependências
 
 ```bash
   npm install
 ```
 
-Start the server
+Rode o servidor de desenvolvimento
 
 ```bash
   npm run dev
@@ -150,54 +162,3 @@ Here are some related projects
 ## Feedback
 
 If you have any feedback, please contact me at thiagomagano1993@outlook.com
-
-
-
-## API Reference
-
-#### Get all Pokemons
-
-```http
-  GET /pokemons
-```
-#### Get all Users
-
-```http
-  GET /users
-```
-#### Get all Types
-
-```http
-  GET /types
-```
-
-#### Get teams of a user
-
-```http
-  GET /party?userId=${id}
-```
-
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `id`      | `int` | **Required**. Id of user to fetch |
-
-#### Create User
-```http
-  POST /register
-```
-
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `name`      | `string` | **Required**. User Name |
-| `email`      | `string` | **@Unique** **Required**. User Email |
-
-#### Login to the app
-```http
-  POST /login
-```
-
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `email`      | `string` | **Required**. User Email |
-
-
