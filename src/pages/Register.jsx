@@ -17,8 +17,8 @@ export default function Register() {
 
   async function handleRegister(e) {
     e.preventDefault();
-    const toastId = toast.loading("Performing login...", {
-      duration: 5000,
+    const toastId = toast.loading("Performing register...", {
+      duration: 10000,
     });
     const newUser = {
       name,
