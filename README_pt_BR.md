@@ -97,12 +97,13 @@ Por isso o **POKEMON TEAM BUILDER** pode te ajudar.
 - Aprendi como fazer o deploy de uma aplicação direito da linha de comando e como acessar a máquina direto na nuvem com **HEROKU**
 - Aprendi como é fácil fazer o deploy de uma aplicação frontend utilizando a **Vercel**
 
-## Improvements
+## Melhorias
 
 Estou ciente de que é preciso acrescentar melhorias no código para deixa-lo mais limpo e organizado, para isso pretendo implementar no futuro alguns métódos: 
 
 - Tests
 - CSS Architeture
+- Melhorias de UI/UX
 - MVC para a REST API
 - Princípios de SOLID
 - Typescript com React
@@ -151,9 +152,9 @@ Rode o servidor de desenvolvimento
   npm run dev
 ```
 
-## Related
+## Projetos relacionados
 
-Here are some related projects
+Alguns projetos com a temática parecida com este:
 
 - [Pokemon Team Planner](https://richi3f.github.io/pokemon-team-planner/)
 - [Marriland's Pokémon Team Builder](https://marriland.com/tools/team-builder/)
@@ -161,4 +162,4 @@ Here are some related projects
 
 ## Feedback
 
-If you have any feedback, please contact me at thiagomagano1993@outlook.com
+Se você tiver algum feedback, reportar algum bug ou sugestão, pode me mandar em thiagomagano1993@outlook.com
