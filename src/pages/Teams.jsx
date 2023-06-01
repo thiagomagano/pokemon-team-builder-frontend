@@ -6,44 +6,44 @@ import Nav from "../components/Nav";
 import TeamItem from "../components/TeamItem";
 import Loader from "../components/Loader";
 
-export default function Partys() {
+export default function Teams() {
   const { auth } = useAuth();
-  const [partys, setPartys] = useState([]);
+  const [teams, setTeams] = useState([]);
   const [user, setUser] = useState("");
   const [loading, setLoading] = useState(false);
 
-  async function getAllPartysByUser(user) {
+  async function getAllTeamsByUser(user) {
     setLoading(true);
     const userLocal = JSON.parse(localStorage.getItem("u"));
     setUser();
-    const response = await api.get("/party", {
+    const response = await api.get("/team", {
       params: {
         userId: user.id || userLocal.id,
       },
     });
     const data = await response?.data;
-    setPartys(data);
+    setTeams(data);
     setLoading(false);
   }
 
   useEffect(() => {
-    getAllPartysByUser(auth);
+    getAllTeamsByUser(auth);
   }, []);
 
   return (
     <div>
       <Nav />
-      <ul className="partys">
-        {partys &&
-          partys.map((party, index) => {
+      <ul className="teams">
+        {teams &&
+          teams.map((team, index) => {
             return (
-              <li key={index} className="partys-item">
+              <li key={index} className="teams-item">
                 <h2>
-                  #{index + 1} - {party.title}
+                  #{index + 1} - {team.title}
                 </h2>
 
-                <ul className="pokemons-party">
-                  {party.pokemons.map((poke, index) => (
+                <ul className="pokemons-team">
+                  {team.pokemons.map((poke, index) => (
                     <TeamItem key={index} pokemon={poke} inBuilder={false} />
                   ))}
                 </ul>

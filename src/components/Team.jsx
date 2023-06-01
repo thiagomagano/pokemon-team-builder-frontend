@@ -13,13 +13,13 @@ export default function Team() {
 
   async function saveTeam(e) {
     e.preventDefault();
-    const newParty = {
+    const newTeam = {
       title: teamTitleRef.current.value || "My Team",
       pokemonList: team.map((t) => t.id),
       userId: auth.id,
     };
 
-    toast.promise(api.post("/party", newParty), {
+    toast.promise(api.post("/team", newTeam), {
       loading: "Saving...",
       success: <b>Team saved! 💾</b>,
       error: <b>Could not save. ☹</b>,

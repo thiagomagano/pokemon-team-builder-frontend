@@ -8,7 +8,7 @@ import Layout from "./pages/Layout";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
-import Partys from "./pages/Partys";
+import Teams from "./pages/Teams";
 import Unauthorized from "./pages/Unauthorized";
 import Missing from "./pages/Missing";
 import RequireAuth from "./pages/RequireAuth";
@@ -25,7 +25,7 @@ function App() {
 
           <Route element={<RequireAuth />}>
             <Route path="/profile" element={<Profile />} />
-            <Route path="/partys" element={<Partys />} />
+            <Route path="/teams" element={<Teams />} />
           </Route>
 
           <Route path="/*" element={<Missing />} />

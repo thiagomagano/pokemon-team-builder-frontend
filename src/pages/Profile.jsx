@@ -19,7 +19,7 @@ export default function Profile() {
   useEffect(() => {
     async function getUserData() {
       const userLocal = JSON.parse(localStorage.getItem("u"));
-      const response = await api.get("/party", {
+      const response = await api.get("/team", {
         params: {
           userId: auth.id || userLocal.id,
         },

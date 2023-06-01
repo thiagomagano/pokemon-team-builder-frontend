@@ -507,20 +507,20 @@ fieldset>div>label {
 }
 
 /* PARTYS */
-.partys {
+.teams {
   margin: 5vh 10vw;
   display: flex;
   flex-direction: column;
   gap: 5vh;
 }
 
-.partys-item {
+.teams-item {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.pokemons-party {
+.pokemons-team {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2ch;

@@ -19,7 +19,7 @@ function Nav() {
           <Link to="/profile">🛠 Builder</Link>
         </li>
         <li>
-          <Link to="/partys">👯‍♂️ Teams </Link>
+          <Link to="/teams">👯‍♂️ Teams </Link>
         </li>
         <li>
           <a className="btn-logout" onClick={handleLogout}>

@@ -120,7 +120,7 @@ function TypeCheckBox({ type, handleFilters }) {
 function PokemonCard({ pokemon }) {
   const { team, setTeam } = useTeam();
 
-  function insertIntoParty(pokemon) {
+  function insertIntoTeam(pokemon) {
     if (team.length < 6) {
       setTeam([...team, pokemon]);
       toast.success(`${pokemon.name}  has been added to your team`);
@@ -133,7 +133,7 @@ function PokemonCard({ pokemon }) {
     <li
       className="pokemon-card"
       onClick={() => {
-        insertIntoParty(pokemon);
+        insertIntoTeam(pokemon);
       }}
     >
       <ul>
