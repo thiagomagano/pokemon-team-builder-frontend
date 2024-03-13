@@ -22,9 +22,9 @@ function Nav() {
           <Link to="/teams">👯‍♂️ Teams </Link>
         </li>
         <li>
-          <a className="btn-logout" onClick={handleLogout}>
-            👋🏼 Logout
-          </a>
+          <Link className="btn-logout" to="/login">
+            Login 🧑
+          </Link>
         </li>
       </ul>
     </nav>

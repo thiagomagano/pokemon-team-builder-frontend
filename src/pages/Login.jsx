@@ -77,6 +77,13 @@ export default function Login() {
           <button className="btn" type="submit">
             Sign In
           </button>
+
+          <button className="btn">
+            <Link className="back-link" to="/profile">
+              Enter without login
+            </Link>
+          </button>
+
           <Link className="back-link" to="/register">
             Need an Account? Sign Up
           </Link>
