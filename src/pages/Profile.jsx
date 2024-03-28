@@ -10,28 +10,25 @@ import Pokedex from "../components/Pokedex";
 
 export default function Profile() {
   const { auth, setAuth } = useAuth();
-  const [userData, setUserData] = useState(null);
+  const [_, setUserData] = useState(null);
 
-  useEffect(() => {
-    setAuth(JSON.parse(localStorage.getItem("u")));
-  }, []);
+  async function getUserData() {
+    const userLocal = JSON.parse(localStorage.getItem("u"));
+    const response = await api.get("/team", {
+      params: {
+        userId: auth?.id || userLocal?.id,
+      },
+    });
+    const data = await response?.data;
 
-  useEffect(() => {
-    async function getUserData() {
-      const userLocal = JSON.parse(localStorage.getItem("u"));
-      const response = await api.get("/team", {
-        params: {
-          userId: auth.id || userLocal.id,
-        },
-      });
-      const data = await response?.data;
+    setUserData(data);
+    return response;
+  }
 
-      setUserData(data);
-      return response;
-    }
-
-    getUserData();
-  }, []);
+  // useEffect(() => {
+  //   if (localStorage.getItem("u") !== undefined)
+  //     setAuth(JSON.parse(localStorage.getItem("u")));
+  // }, []);
 
   return (
     <>

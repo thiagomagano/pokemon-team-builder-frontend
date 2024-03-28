@@ -13,19 +13,25 @@ export default function Team() {
 
   async function saveTeam(e) {
     e.preventDefault();
-    const newTeam = {
-      title: teamTitleRef.current.value || "My Team",
-      pokemonList: team.map((t) => t.id),
-      userId: auth.id,
-    };
 
-    toast.promise(api.post("/team", newTeam), {
-      loading: "Saving...",
-      success: <b>Team saved! 💾</b>,
-      error: <b>Could not save. ☹</b>,
-    });
+    if (auth.id) {
+      const newTeam = {
+        title: teamTitleRef.current.value || "My Team",
+        pokemonList: team.map((t) => t.id),
+        userId: auth.id,
+      };
 
-    teamTitleRef.current.value = "";
+      toast.promise(api.post("/team", newTeam), {
+        loading: "Saving...",
+        success: <b>Team saved! 💾</b>,
+        error: <b>Could not save. ☹</b>,
+      });
+      teamTitleRef.current.value = "";
+    } else {
+      toast.error(
+        "You are not logged, cannot save the team ☹. Please login and try again!"
+      );
+    }
   }
 
   return (
@@ -40,6 +46,7 @@ export default function Team() {
           onClick={(e) => {
             e.preventDefault();
             setTeam([]);
+            teamTitleRef.current.value = "";
             toast.success("Your team has been emptied", {
               icon: "🧹",
             });
