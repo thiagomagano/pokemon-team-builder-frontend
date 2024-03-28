@@ -25,7 +25,7 @@ function App() {
           <Route path="/*" element={<Missing />} />
         </Route>
       </Routes>
-      <Toaster />
+      <Toaster position="bottom-right" />
     </AuthProvider>
   );
 }
