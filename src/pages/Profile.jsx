@@ -25,10 +25,10 @@ export default function Profile() {
     return response;
   }
 
-  // useEffect(() => {
-  //   if (localStorage.getItem("u") !== undefined)
-  //     setAuth(JSON.parse(localStorage.getItem("u")));
-  // }, []);
+  useEffect(() => {
+    if (localStorage.getItem("u") !== undefined)
+      setAuth(JSON.parse(localStorage.getItem("u")));
+  }, []);
 
   return (
     <>

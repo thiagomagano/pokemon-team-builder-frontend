@@ -14,7 +14,7 @@ export default function Team() {
   async function saveTeam(e) {
     e.preventDefault();
 
-    if (auth.id) {
+    if (auth?.id) {
       const newTeam = {
         title: teamTitleRef.current.value || "My Team",
         pokemonList: team.map((t) => t.id),
@@ -26,12 +26,25 @@ export default function Team() {
         success: <b>Team saved! 💾</b>,
         error: <b>Could not save. ☹</b>,
       });
-      teamTitleRef.current.value = "";
+      cleanTeam();
     } else {
       toast.error(
         "You are not logged, cannot save the team ☹. Please login and try again!"
       );
     }
+  }
+
+  function cleanTeam(e = null) {
+    if (e) {
+      e.preventDefault();
+      toast.success("Your team has been emptied", {
+        icon: "🧹",
+      });
+    }
+
+    setTeam([]);
+
+    teamTitleRef.current.value = "";
   }
 
   return (
@@ -41,17 +54,7 @@ export default function Team() {
         <button className="btn-save" onClick={(e) => saveTeam(e)}>
           Save Team
         </button>
-        <button
-          className="btn-clean"
-          onClick={(e) => {
-            e.preventDefault();
-            setTeam([]);
-            teamTitleRef.current.value = "";
-            toast.success("Your team has been emptied", {
-              icon: "🧹",
-            });
-          }}
-        >
+        <button className="btn-clean" onClick={(e) => cleanTeam(e)}>
           Clean Team
         </button>
       </form>
