@@ -42,7 +42,7 @@ export default function Login() {
       toast.dismiss(toastId);
       toast.success(`Welcome ${name}! 🙋🏻‍♂️`);
 
-      navigate("/profile", { replace: true });
+      navigate("/home", { replace: true });
     } catch (err) {
       toast.dismiss(toastId);
       toast.error("Login Failed");
@@ -78,14 +78,11 @@ export default function Login() {
             Sign In
           </button>
 
-          <button className="btn">
-            <Link className="back-link" to="/profile">
-              Enter without login
-            </Link>
-          </button>
-
           <Link className="back-link" to="/register">
             Need an Account? Sign Up
+          </Link>
+          <Link className="back-link" to="/">
+            Continue without login
           </Link>
         </form>
       </section>

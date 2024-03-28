@@ -7,7 +7,7 @@ import { AuthProvider } from "./context/AuthProvider";
 import Layout from "./pages/Layout";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Profile from "./pages/Profile";
+import Home from "./pages/Home";
 import Teams from "./pages/Teams";
 import Missing from "./pages/Missing";
 
@@ -16,10 +16,10 @@ function App() {
     <AuthProvider>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route path="/" element={<Profile />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/profile" element={<Profile />} />
           <Route path="/teams" element={<Teams />} />
 
           <Route path="/*" element={<Missing />} />

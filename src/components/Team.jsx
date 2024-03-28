@@ -49,15 +49,17 @@ export default function Team() {
 
   return (
     <section className="team">
-      <form className="team-form">
-        <input ref={teamTitleRef} type="text" placeholder="Nome do Time" />
-        <button className="btn-save" onClick={(e) => saveTeam(e)}>
-          Save Team
-        </button>
-        <button className="btn-clean" onClick={(e) => cleanTeam(e)}>
-          Clean Team
-        </button>
-      </form>
+      {auth?.id && (
+        <form className="team-form">
+          <input ref={teamTitleRef} type="text" placeholder="Nome do Time" />
+          <button className="btn-save" onClick={(e) => saveTeam(e)}>
+            Save Team
+          </button>
+          <button className="btn-clean" onClick={(e) => cleanTeam(e)}>
+            Clean Team
+          </button>
+        </form>
+      )}
       <ul className="all-team">
         <TeamItem pokemon={team[0] || null} inBuilder={true} />
         <TeamItem pokemon={team[1] || null} inBuilder={true} />
