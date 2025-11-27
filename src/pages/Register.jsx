@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../services/api";
 
-const REGISTER_URL = "/register";
+const REGISTER_URL = "/users";
 
 export default function Register() {
   const errRef = useRef();
