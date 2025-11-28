@@ -29,7 +29,7 @@ export default function Team() {
       cleanTeam();
     } else {
       toast.error(
-        "You are not logged, cannot save the team ☹. Please login and try again!"
+        "You are not logged, cannot save the team ☹. Please login and try again!",
       );
     }
   }
@@ -48,18 +48,11 @@ export default function Team() {
   }
 
   return (
-    <section className="team">
-      {auth?.id && (
-        <form className="team-form">
-          <input ref={teamTitleRef} type="text" placeholder="Nome do Time" />
-          <button className="btn-save" onClick={(e) => saveTeam(e)}>
-            Save Team
-          </button>
-          <button className="btn-clean" onClick={(e) => cleanTeam(e)}>
-            Clean Team
-          </button>
-        </form>
-      )}
+    <section className="team-container">
+      <div className="pokedex-title">
+        <h2>Team</h2>
+      </div>
+
       <ul className="all-team">
         <TeamItem pokemon={team[0] || null} inBuilder={true} />
         <TeamItem pokemon={team[1] || null} inBuilder={true} />
@@ -68,6 +61,18 @@ export default function Team() {
         <TeamItem pokemon={team[4] || null} inBuilder={true} />
         <TeamItem pokemon={team[5] || null} inBuilder={true} />
       </ul>
+
+      {auth?.id && (
+        <form className="team-form">
+          <input ref={teamTitleRef} type="text" placeholder="Nome do Time" />
+          <button className="btn-save" onClick={(e) => saveTeam(e)}>
+            Save
+          </button>
+          <button className="btn-clean" onClick={(e) => cleanTeam(e)}>
+            Clean
+          </button>
+        </form>
+      )}
     </section>
   );
 }

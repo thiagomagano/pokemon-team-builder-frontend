@@ -71,6 +71,14 @@ export default function Pokedex() {
       </div>
 
       <div className="filter">
+        <ul className="pokedex-list">
+          {pokemonsFilter &&
+            pokemonsFilter.map((pokemon, index) => {
+              return <PokemonCard pokemon={pokemon} key={index} />;
+            })}
+          {isLoading && <Loader show={isLoading} />}
+        </ul>
+
         <aside>
           <form>
             <fieldset>
@@ -88,14 +96,6 @@ export default function Pokedex() {
             </fieldset>
           </form>
         </aside>
-
-        <ul className="pokedex-list">
-          {pokemonsFilter &&
-            pokemonsFilter.map((pokemon, index) => {
-              return <PokemonCard pokemon={pokemon} key={index} />;
-            })}
-          {isLoading && <Loader show={isLoading} />}
-        </ul>
       </div>
     </div>
   );

@@ -32,13 +32,15 @@ export default function Profile() {
 
   return (
     <>
-      <Nav />
-      <main className="container">
-        <TeamProvider>
-          <Team />
-          <Pokedex />
-        </TeamProvider>
-      </main>
+      <div className="app">
+        <Nav />
+        <main className="container">
+          <TeamProvider>
+            <Team />
+            <Pokedex />
+          </TeamProvider>
+        </main>
+      </div>
     </>
   );
 }
