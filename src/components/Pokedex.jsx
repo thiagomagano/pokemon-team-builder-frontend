@@ -19,7 +19,6 @@ export default function Pokedex() {
       setTypes(data);
     } catch (err) {
       console.error("Error loading types:", err);
-      // Types error is not critical, so we don't set error state
     }
   }
 
@@ -74,51 +73,54 @@ export default function Pokedex() {
 
   return (
     <div className="pokedex">
-      <div className="pokedex-title">
-        <h2>Pokedex</h2>
-      </div>
-
-      <form>
-        <fieldset>
-          <legend>Filter</legend>
-          <select
-            className="filter-select"
-            name="type"
-            id="type-filter"
-            value={filterType}
-            onChange={handleFilter}
-          >
-            <option value="">All Types</option>
-            {types &&
-              types.map((type, index) => {
-                return (
-                  <option key={index} value={type.name}>
-                    {type.name}
-                  </option>
-                );
-              })}
-          </select>
-        </fieldset>
-      </form>
-
       {error ? (
         <div className="pokedex-error">
           <p>{error}</p>
           <button onClick={() => {
             setIsLoading(true);
             getAllPokemons();
+            getAllTypes();
           }} className="retry-button">
             Try Again
           </button>
         </div>
       ) : (
-        <ul className="pokedex-list">
-          {pokemonsFilter &&
-            pokemonsFilter.map((pokemon, index) => {
-              return <PokemonCard pokemon={pokemon} key={index} />;
-            })}
-          {isLoading && <Loader show={isLoading} />}
-        </ul>
+        <>
+          <div className="pokedex-title">
+            <h2>Pokedex</h2>
+          </div>
+
+          <form>
+            <fieldset>
+              <legend>Filter</legend>
+              <select
+                className="filter-select"
+                name="type"
+                id="type-filter"
+                value={filterType}
+                onChange={handleFilter}
+              >
+                <option value="">All Types</option>
+                {types &&
+                  types.map((type, index) => {
+                    return (
+                      <option key={index} value={type.name}>
+                        {type.name}
+                      </option>
+                    );
+                  })}
+              </select>
+            </fieldset>
+          </form>
+
+          <ul className="pokedex-list">
+            {pokemonsFilter &&
+              pokemonsFilter.map((pokemon, index) => {
+                return <PokemonCard pokemon={pokemon} key={index} />;
+              })}
+            {isLoading && <Loader show={isLoading} />}
+          </ul>
+        </>
       )}
     </div>
   );
