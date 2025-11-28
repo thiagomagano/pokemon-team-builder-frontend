@@ -120,14 +120,14 @@ li {
 
 .login-container {
     width: 100%;
-    max-width: 1120px;
-    height: 100vh;
+    min-height: 100vh;
     display: grid;
     grid-template-columns: 1fr 1fr;
     place-items: center;
+    gap: 1rem;
 }
 
-.login-container form {
+.form-container form {
     display: flex;
     justify-content: space-around;
     flex-direction: column;
@@ -142,12 +142,19 @@ li {
 
 .form-container img {
     width: 350px;
+    max-width: 350px;
     height: fit-content;
 }
 
-.hero {
+.form-hero-image {
     width: 100%;
-    min-width: 350px;
+}
+
+.form-hero-image img {
+    width: 100%;
+    min-width: 300px;
+    max-width: 750px;
+    object-fit: contain;
 }
 
 @media (max-width: 730px) {
@@ -155,7 +162,7 @@ li {
         grid-template-columns: 1fr;
     }
 
-    .hero {
+    .form-hero-image {
         display: none;
     }
 }

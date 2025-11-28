@@ -14,8 +14,10 @@ export default function Login() {
 
   const errRef = useRef();
   const emailRef = useRef();
+  const passwordRef = useRef();
 
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [errMsg, setErrMsg] = useState("");
 
   useEffect(() => {
@@ -29,7 +31,8 @@ export default function Login() {
     });
 
     try {
-      const response = await api.post(LOGIN_URL, { email });
+      //Implementar a lógica do Password
+      const response = await api.post(LOGIN_URL, { email, password });
 
       const id = response?.data?.id;
       const name = response?.data?.name;
@@ -38,6 +41,7 @@ export default function Login() {
       localStorage.setItem("u", JSON.stringify({ email, id, name }));
 
       setEmail("");
+      setPassword("");
 
       toast.dismiss(toastId);
       toast.success(`Welcome ${name}! 🙋🏻‍♂️`);
@@ -59,8 +63,8 @@ export default function Login() {
   }
 
   return (
-    <div className="login-container">
-      <section className="form-container">
+    <section className="login-container">
+      <div className="form-container">
         <form onSubmit={handleLogin} className="form-enter">
           <img src="/logo.png" alt="Pokemon Team Builder" />
           <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
@@ -74,6 +78,14 @@ export default function Login() {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
+          <input
+            ref={passwordRef}
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
           <button className="btn" type="submit">
             Sign In
           </button>
@@ -85,12 +97,10 @@ export default function Login() {
             Continue without login
           </Link>
         </form>
-      </section>
-      <img
-        className="hero"
-        src="/hero.png"
-        alt="The 3 starter Pokemons happy"
-      />
-    </div>
+      </div>
+      <div className="form-hero-image">
+        <img src="/hero.png" alt="The 3 starters Pokemons happy" />
+      </div>
+    </section>
   );
 }
