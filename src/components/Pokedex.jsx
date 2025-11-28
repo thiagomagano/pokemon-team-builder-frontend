@@ -8,21 +8,35 @@ export default function Pokedex() {
   const [types, setTypes] = useState([]);
   const [pokemons, setPokemons] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [filterTypes, setFilterTypes] = useState([]);
+  const [filterType, setFilterType] = useState("");
   const [pokemonsFilter, setPokemonsFilter] = useState([]);
+  const [error, setError] = useState(null);
 
   async function getAllTypes() {
-    const response = await api.get("/types");
-    const data = await response?.data;
-    setTypes(data);
+    try {
+      const response = await api.get("/types");
+      const data = await response?.data;
+      setTypes(data);
+    } catch (err) {
+      console.error("Error loading types:", err);
+      // Types error is not critical, so we don't set error state
+    }
   }
 
   async function getAllPokemons() {
-    const response = await api.get("/pokemons");
-    const data = await response?.data;
-    setPokemons(data);
-    setPokemonsFilter(data);
-    setIsLoading(false);
+    try {
+      setError(null);
+      const response = await api.get("/pokemons");
+      const data = await response?.data;
+      setPokemons(data);
+      setPokemonsFilter(data);
+      setIsLoading(false);
+    } catch (err) {
+      console.error("Error loading pokemons:", err);
+      setError("Failed to load pokemons. Please try again.");
+      setIsLoading(false);
+      toast.error("Failed to load pokemons");
+    }
   }
 
   useEffect(() => {
@@ -32,36 +46,30 @@ export default function Pokedex() {
   }, []);
 
   useEffect(() => {
-    const newPokemons = setFilterPokemons(pokemons);
-    setPokemonsFilter(newPokemons);
-    if (filterTypes.length === 0) {
+    if (filterType === "") {
       setPokemonsFilter(pokemons);
+    } else {
+      const newPokemons = setFilterPokemons(pokemons);
+      setPokemonsFilter(newPokemons);
     }
-  }, [filterTypes]);
+  }, [filterType, pokemons]);
 
   function setFilterPokemons(pokemons) {
     if (pokemons) {
       const newPokemons = pokemons.filter((p) => {
         if (p.types.length > 1)
           return (
-            filterTypes.indexOf(p.types[0].name) > -1 ||
-            filterTypes.indexOf(p.types[1].name) > -1
+            p.types[0].name === filterType || p.types[1].name === filterType
           );
-        return filterTypes.indexOf(p.types[0].name) > -1;
+        return p.types[0].name === filterType;
       });
 
       return newPokemons;
     }
   }
 
-  function handleFilters(e) {
-    const filter = e.target.value;
-
-    if (e.target.checked) {
-      setFilterTypes([...filterTypes, filter]);
-    } else {
-      setFilterTypes(filterTypes.filter((f) => f != filter));
-    }
+  function handleFilter(e) {
+    setFilterType(e.target.value);
   }
 
   return (
@@ -70,7 +78,40 @@ export default function Pokedex() {
         <h2>Pokedex</h2>
       </div>
 
-      <div className="filter">
+      <form>
+        <fieldset>
+          <legend>Filter</legend>
+          <select
+            className="filter-select"
+            name="type"
+            id="type-filter"
+            value={filterType}
+            onChange={handleFilter}
+          >
+            <option value="">All Types</option>
+            {types &&
+              types.map((type, index) => {
+                return (
+                  <option key={index} value={type.name}>
+                    {type.name}
+                  </option>
+                );
+              })}
+          </select>
+        </fieldset>
+      </form>
+
+      {error ? (
+        <div className="pokedex-error">
+          <p>{error}</p>
+          <button onClick={() => {
+            setIsLoading(true);
+            getAllPokemons();
+          }} className="retry-button">
+            Try Again
+          </button>
+        </div>
+      ) : (
         <ul className="pokedex-list">
           {pokemonsFilter &&
             pokemonsFilter.map((pokemon, index) => {
@@ -78,41 +119,7 @@ export default function Pokedex() {
             })}
           {isLoading && <Loader show={isLoading} />}
         </ul>
-
-        <aside>
-          <form>
-            <fieldset>
-              <legend>Types</legend>
-              {types &&
-                types.map((type, index) => {
-                  return (
-                    <TypeCheckBox
-                      type={type}
-                      key={index}
-                      handleFilters={handleFilters}
-                    />
-                  );
-                })}
-            </fieldset>
-          </form>
-        </aside>
-      </div>
-    </div>
-  );
-}
-
-function TypeCheckBox({ type, handleFilters }) {
-  return (
-    <div className="checkbox-item">
-      <input
-        className="filter-checkbox"
-        type="checkbox"
-        name="type"
-        id={type.name}
-        value={type.name}
-        onChange={(e) => handleFilters(e)}
-      />
-      <label htmlFor={type.name}> {type.name}</label>
+      )}
     </div>
   );
 }

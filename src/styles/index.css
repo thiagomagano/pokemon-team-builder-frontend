@@ -122,7 +122,7 @@ li {
 }
 
 .container {
-    margin: 2ch 10vw;
+    margin: 3rem 10vw;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
@@ -428,7 +428,7 @@ nav img {
 .pokedex {
     display: flex;
     justify-content: space-between;
-    gap: 5vh;
+    gap: 1rem;
     flex-direction: column;
 }
 
@@ -439,13 +439,6 @@ nav img {
     width: 100%;
     text-align: center;
     padding: 0.1rem;
-}
-
-.filter {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 5vmin;
-    align-items: flex-start;
 }
 
 fieldset {
@@ -464,18 +457,6 @@ fieldset > div {
 
 fieldset > div + div {
     margin-block-start: 2ch;
-}
-
-input[type="checkbox"] {
-    margin: 0;
-    outline-offset: 5px;
-    accent-color: var(--color-black);
-    transform-style: preserve-3d;
-    cursor: pointer;
-    width: auto;
-    height: auto;
-    border: none;
-    padding: 0;
 }
 
 fieldset > div > label {

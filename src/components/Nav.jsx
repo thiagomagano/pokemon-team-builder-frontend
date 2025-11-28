@@ -11,8 +11,6 @@ function Nav() {
 
   return (
     <nav>
-      <p>Hey {auth?.name ? auth.name : "there"} 🙋🏻‍♂️</p>
-
       <img src="/logo.png" alt="Pokemon-TemBuilder" />
 
       <ul className="nav-links">
@@ -35,6 +33,7 @@ function Nav() {
                 ↪ Logout
               </Link>
             </li>
+            <li>{auth?.name ? auth.name : "there"} 🙋🏻‍♂️</li>
           </>
         )}
       </ul>
