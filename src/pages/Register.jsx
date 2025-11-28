@@ -11,6 +11,8 @@ export default function Register() {
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
 
   const [sucess, setSucess] = useState(false);
   const [errMsg, setErrMsg] = useState("error!");
@@ -23,6 +25,7 @@ export default function Register() {
     const newUser = {
       name,
       email,
+      password,
     };
 
     try {
@@ -80,6 +83,25 @@ export default function Register() {
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
+              <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+
+              {password !== passwordConfirm && passwordConfirm != "" && (
+                <p style={{ color: "red" }}>Password's must be igual</p>
+              )}
+              <input
+                type="password"
+                placeholder="Confirm Password"
+                value={passwordConfirm}
+                onChange={(e) => setPasswordConfirm(e.target.value)}
+                required
+              />
+
               <button className="btn btn-register" type="submit">
                 Register
               </button>
